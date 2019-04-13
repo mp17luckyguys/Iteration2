@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using static FamilyGo.Utils.ExcelToDBActivity;
-using static FamilyGo.Utils.ExcelToDBOtherActivity;
-using static FamilyGo.Utils.ExcelToDBParks;
-using static FamilyGo.Utils.ExcelToDBSportPlace;
+//using static FamilyGo.Utils.ExcelToDBActivity;
+//using static FamilyGo.Utils.ExcelToDBOtherActivity;
+//using static FamilyGo.Utils.ExcelToDBParks;
+//using static FamilyGo.Utils.ExcelToDBSportPlace;
 
 namespace FamilyGo.Controllers
 {

@@ -574,12 +574,6 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\GoogleDirections\GoogleDirections.csproj">
-      <Project>{7C6447B2-D889-4306-AD8B-DA5542054C66}</Project>
-      <Name>GoogleDirections</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
