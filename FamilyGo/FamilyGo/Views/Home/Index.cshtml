@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- about -->
+<div class="about w3-agileits">
+    <div class="container">
+        <div class="info">
+            <div class="col-md-6 about-left">
+                <h3 class="agileits-title">Welcome to <span>Family GO!</span></h3>
+            </div>
+            <div class="col-md-6 about-right agileits-w3layoutsleft">
+                <h4>Spend more time with your child </h4>
+                <p> Parents have busy schedual and do not have enough time to spend with their child.</p>
+                <ul>
+                    <li><span class="glyphicon glyphicon-asterisk"></span> <a href="@Url.Action("Index","Activities")" style="color:gray">Find activities you can play with your child </a></li>
+                    <li><span class="glyphicon glyphicon-asterisk"></span> Find nationality in your suburb</li>
+                    <li><span class="glyphicon glyphicon-asterisk"></span> Coming popular events </li>
+                </ul>
+            </div>
+        </div>      
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- //about -->
+<!-- news -->
+<div class="news w3-agileits">
+    <div class="container newsforchild">
+        <h3 class="agileits-title1">News about Children Neglect</h3>
+        <div class="news-agileinfo">
+            <div class="col-md-6 news-w3left">
+                <h6><a href="https://www.abc.net.au/news/2018-09-16/australia-facing-an-epidemic-of-child-abuse-and-neglect/10233898" style="color:aliceblue" data-toggle="modal">Australia facing an 'epidemic of child abuse and neglect', according to experts </a></h6>
+                <p>Sep. 16, 2018</p>
+                <p>In what has been described as a world-first examination of child protection reports, Australia's systems are shown to be in meltdown amid unprecedented levels of child abuse and neglect.</p>
+                <a href="https://www.abc.net.au/news/2018-09-16/australia-facing-an-epidemic-of-child-abuse-and-neglect/10233898" class="agilebtn" data-toggle="modal" data-target="#myModal"><span>Read More</span></a>
+            </div>
+            <div class="col-md-6 news-w3right">
+                <img src="~/Image/new1.jpg" class="img-responsive" alt="" />
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="news-agileinfo btm-newsrow w3-agileits">
+            <div class="col-md-6 news-w3left news-w3left1">
+                <h6><a href="https://www.abc.net.au/news/2015-06-06/child-neglect-on-the-rise-across-australia/6526260" style="color:aliceblue">Child neglect cases across Australia increase; services failing to support at-risk children</a></h6>
+                <p>Jun. 6, 2015</p>
+                <p>Rates of child neglect and emotional abuse are on the rise across Australia but the problem is being largely ignored, child protection groups have warned</p>
+                <a href="https://www.abc.net.au/news/2015-06-06/child-neglect-on-the-rise-across-australia/6526260" class="agilebtn" ><span>Read More</span></a>
+            </div>
+            <div class="col-md-6 news-w3right news-w3right1">
+                <img src="~/Image/news2.jpg" class="img-responsive" alt="" />
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //news -->
+
+<link href="~/Content/flexslider.css" rel="stylesheet" />
