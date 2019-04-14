@@ -14,7 +14,7 @@ namespace FamilyGo.Controllers
     {
 
 
-        private familygogodbEntities db = new familygogodbEntities();
+        private FamilyGoiteration1_dbEntities db = new FamilyGoiteration1_dbEntities();
 
         // GET: Activities
         public ActionResult Index()

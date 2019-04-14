@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="familygogodbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="FamilyGoiteration1_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activities">
           <Key>
             <PropertyRef Name="ActivityId" />
@@ -46,7 +46,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="familygogodbModelStoreContainer">
+        <EntityContainer Name="FamilyGoiteration1_dbModelStoreContainer">
           <EntitySet Name="Activities" EntityType="Self.Activities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
@@ -59,7 +59,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="familygogodbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="FamilyGoiteration1_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="ActivityId" />
@@ -103,7 +103,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="familygogodbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FamilyGoiteration1_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activities" EntityType="Self.Activity" />
           <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="Places" EntityType="Self.Place" />
@@ -117,9 +117,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="familygogodbModelStoreContainer" CdmEntityContainer="familygogodbEntities">
+        <EntityContainerMapping StorageEntityContainer="FamilyGoiteration1_dbModelStoreContainer" CdmEntityContainer="FamilyGoiteration1_dbEntities">
           <EntitySetMapping Name="Activities">
-            <EntityTypeMapping TypeName="familygogodbModel.Activity">
+            <EntityTypeMapping TypeName="FamilyGoiteration1_dbModel.Activity">
               <MappingFragment StoreEntitySet="Activities">
                 <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -128,7 +128,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Games">
-            <EntityTypeMapping TypeName="familygogodbModel.Game">
+            <EntityTypeMapping TypeName="FamilyGoiteration1_dbModel.Game">
               <MappingFragment StoreEntitySet="Games">
                 <ScalarProperty Name="GameId" ColumnName="GameId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -137,7 +137,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Places">
-            <EntityTypeMapping TypeName="familygogodbModel.Place">
+            <EntityTypeMapping TypeName="FamilyGoiteration1_dbModel.Place">
               <MappingFragment StoreEntitySet="Places">
                 <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -167,7 +167,7 @@
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
