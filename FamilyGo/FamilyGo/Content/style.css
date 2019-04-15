@@ -4575,7 +4575,7 @@ figure.effect-roxy {
     background: -webkit-linear-gradient(45deg, #ffd700 0%, #66cdaa 100%);
     position:center;
     border-radius:35px;
-    height:200px;
+    height:160px;
 }
 
     figure.effect-roxy img {
@@ -4597,17 +4597,15 @@ figure.effect-roxy {
 
     figure.effect-roxy figcaption {
        text-align: center;
-       padding-top:90px;
-       padding-left:55px;
     }
 
     figure.effect-roxy h2 {
-        position: center;
+        position:center;
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
         -webkit-transform: translate3d(-10px,0,0);
         transform: translate3d(-10px,0,0);
-        border: 1px solid #fff;
+        
     }
 
     figure.effect-roxy p {
