@@ -51,7 +51,7 @@ body a:focus {
 
 .mapanddata {
     padding-left:10px;
-    padding-top:0.6em;
+    padding-top:1em;
 }
 
 .sidebar {
@@ -4007,7 +4007,6 @@ h3 {
         margin-left:25%;
         margin-bottom:20px;
         text-align: center;
-        border:dashed;
         border-radius:20px;
         display:block;
         width:560px;
@@ -4024,12 +4023,12 @@ h3 {
     .about-heading h5 {
         font-family:'Comic Sans MS';
         color: black;
-        font-size: 1em;
+        font-size: 1.2em;
         margin: 0;
         text-transform:uppercase;
     }
     .about-heading h6 {
-        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family:'Comic Sans MS';
         color: black;
         font-size: 1em;
         margin: 0;
