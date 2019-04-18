@@ -9,9 +9,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="about-heading">
-    <h2>Activity Places</h2>
-</div>
+
 <div class="container">
 <div class=" about-heading ">
     <h5>
@@ -24,23 +22,30 @@
 <div>
     <div  style="margin-top:5px;">
         <div class="about-heading">
-            <div class="col-md-6">
-            <div>
+            <div class="col-md-4">
+         <!--
+              <div>
                 <h6> Children Age Group:</h6>
             </div>
+         -->
+           
 
             <div style="padding-top:0.2em">
                 <input type="checkbox" name="age" value="6" />3-6 years old &nbsp;&nbsp;
                 <input type="checkbox" name="age" value="7" />7-12 years old<br />
             </div>
             </div>
-            <div class="col-md-offset-6">
+            <div class="col-md-offset-4">
             <div >
-                <h6>Change Activities:</h6>
+
+                <!--
+                    <h6>Change Activities:</h6>
+                -->
+                
                 <div style="padding-top:0.2em">
                     <select id="Select1" style="width:150px;"></select>
                     
-                        <input type="button" value="Search" id="searchButton" onclick="search()">
+                        <input type="button" value="Change" id="searchButton" onclick="search()">
                     
                 </div>
             </div>
