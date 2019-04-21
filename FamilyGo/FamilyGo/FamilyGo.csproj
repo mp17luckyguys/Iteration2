@@ -158,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ActivitiesController.cs" />
+    <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlacesController.cs" />
@@ -418,6 +419,7 @@
     <Content Include="Models\FamilyGoModel.edmx.diagram">
       <DependentUpon>FamilyGoModel.edmx</DependentUpon>
     </Content>
+    <Content Include="json\Language.json" />
     <None Include="Properties\PublishProfiles\FamilyGo - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FamilyGo - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\FamilyGo - Web Deploy.pubxml" />
@@ -558,6 +560,9 @@
     <Content Include="Views\Activities\Information.cshtml" />
     <Content Include="Views\Activities\InformationTwo.cshtml" />
     <Content Include="Views\Shared\search_layout.cshtml" />
+    <Content Include="Views\Education\Index.cshtml" />
+    <Content Include="json\Country.json" />
+    <Content Include="json\new.geojson" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

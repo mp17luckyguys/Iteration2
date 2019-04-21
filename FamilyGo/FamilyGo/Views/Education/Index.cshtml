@@ -1,0 +1,858 @@
+﻿@Scripts.Render("~/bundles/jquery")
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Create a hover effect</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        svg {
+            height: 200px;
+            width: 220px;
+            border-style: solid;
+            border-color: darkgray;
+            border-width: 2px;
+            background-color: white;
+            position: absolute;
+            top: 430px;
+            left: 10px;
+        }
+
+        .axis {
+            font: 10px sans-serif;
+        }
+
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #000;
+                shape-rendering: crispEdges;
+            }
+    </style>
+</head>
+<body>
+
+    <div id='map'></div>
+    <div id='bar'></div>
+    <script>
+        var boundaries;
+        var country;
+        var language;
+        $.ajax({
+            url: "/Education/GetJsonFromFile",
+            type: "GET",//请求方式为get
+            dataType: "json", //返回数据格式为json
+            data: { path: "~/json/new.geojson" },
+            async: false,//是否同步
+            success: function (data) {//请求成功完成后要执行的方法
+                boundaries = data;
+            },
+            error: function () {
+                console.log("error");
+            }
+        })
+        mapboxgl.accessToken = 'pk.eyJ1IjoiemVrdW5kaSIsImEiOiJjamZ3OTRsbHQ0aWRzMzBudms4dGxoZmZnIn0.0yzmMvKJeh6Md9wQ4_Ozlw';
+        var hoveredStateId = null;
+        var margin = { top: 100, right: 20, bottom: 70, left: 400 },
+            width = 600 - margin.left - margin.right,
+            height = 300 - margin.top - margin.bottom;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [144.964194, -37.824898],
+            zoom: 10
+        });
+        var tooltip1 = d3.select("body")
+            .append("div")
+            .style("border-style", "solid")
+            .style("border-width", "1px")
+            .style("background-color", "lightgray")
+            .style("position", "absolute")
+            .style("opacity", 0.8)
+            .style("visibility", "visible");
+        var svg;
+        var canvas = map.getCanvasContainer();
+        language();
+        function country() {
+            map.on('load', function () {
+                map.addSource("states", {
+                    "type": "geojson",
+                    "data": boundaries
+                });
+                // The feature-state dependent fill-opacity expression will render the hover effect
+                // when a feature's hover state is set to true.
+
+
+
+                countryColor = [{ 'id': 1, 'country': 'Vietnam', 'color': '#8D41C3' }, { 'id': 2, 'country': 'England', 'color': '#A85329' }, { 'id': 3, 'country': 'Italy', 'color': '#7A1E25' }, { 'id': 4, 'country': 'India', 'color': '#122B96' }, { 'id': 5, 'country': 'China', 'color': '#D5F4B1' }, { 'id': 6, 'country': 'Greece', 'color': '#43ADFE' }, { 'id': 7, 'country': 'Iraq', 'color': '#438344' }, { 'id': 8, 'country': 'Philippines', 'color': '#757ED9' }, { 'id': 9, 'country': 'Poland', 'color': '#39517C' }, { 'id': 10, 'country': 'South Africa', 'color': '#E14578' }, { 'id': 11, 'country': 'New Zealand', 'color': '#EBEF8B' }, { 'id': 12, 'country': 'Turkey', 'color': '#8AD886' }, { 'id': 13, 'country': 'Sri Lanka', 'color': '#7C9116' }, { 'id': 14, 'country': 'Afghanistan', 'color': '#228E8C' }, { 'id': 15, 'country': 'Somalia', 'color': '#A31DDD' }, { 'id': 16, 'country': 'Malta', 'color': '#F89614' }, { 'id': 17, 'country': 'Malaysia', 'color': '#6F5ABE' }]
+
+
+
+                map.addLayer({
+                    "id": "state-fills",
+                    "type": "fill",
+                    "source": "states",
+                    "layout": {},
+                    'paint': {
+                        'fill-color': {
+                            "property": "main_country_id", "stops": [[0, 'white'],
+                            [1, '#8D41C3'],
+                            [2, '#A85329'],
+                            [3, '#7A1E25'],
+                            [4, '#122B96'],
+                            [5, '#D5F4B1'],
+                            [6, '#43ADFE'],
+                            [7, '#438344'],
+                            [8, '#757ED9'],
+                            [9, '#39517C'],
+                            [10, '#E14578'],
+                            [11, '#EBEF8B'],
+                            [12, '#8AD886'],
+                            [13, '#7C9116'],
+                            [14, '#228E8C'],
+                            [15, '#A31DDD'],
+                            [16, '#F89614'],
+                            [17, '#6F5ABE']]
+                        }, 'fill-opacity':
+                            ["case",
+                                ["boolean", ["feature-state", "hover"], false], 1, 0.5
+                            ]
+                    },
+                });
+
+                map.addLayer({
+                    "id": "state-borders",
+                    "type": "line",
+                    "source": "states",
+                    "layout": {},
+                    "paint": {
+                        "line-color": "#627BC1",
+                        "line-width": 1
+                    }
+                });
+                var tooltip = d3.select("body")
+                    .append("div")
+                    .style("border-style", "solid")
+                    .style("border-width", "1px")
+                    .style("background-color", "lightgray")
+                    .style("position", "absolute")
+                    .style("opacity", 0.8)
+                    .style("visibility", "visible");
+                var Ddata;
+                $.ajax({
+                    url: "/Education/GetJsonFromFile",
+                    type: "GET",//请求方式为get
+                    dataType: "json", //返回数据格式为json
+                    data: { path: "~/json/Country.json" },
+                    async: false,//是否同步
+                    success: function (data) {//请求成功完成后要执行的方法
+                        Ddata = data;
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                })
+
+                // When the user moves their mouse over the state-fill layer, we'll update the
+                // feature state for the feature under the mouse.
+                map.on("mousemove", "state-fills", function (thisElement) {
+                    if (thisElement.features.length > 0) {
+                        if (hoveredStateId) {
+                            map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: false });
+                        }
+                        hoveredStateId = thisElement.features[0].id;
+                        map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: true });
+                    }
+                    tooltip.style("visibility", "visible").text(thisElement.features[0].properties.vic_loca_2);
+                    tooltip.style("top", (thisElement.point.y - 10) + "px").style("left", (thisElement.point.x + 10) + "px");
+
+                    clicked = thisElement.features[0].properties.vic_loca_2;
+                    Ddata.forEach(function (e) {
+                        if (e["Suburb"].toUpperCase() == clicked) {
+                            barchartForCountry(e);
+
+                        }
+                    })
+                    });
+                // When the mouse leaves the state-fill layer, update the feature state of the
+                // previously hovered feature.
+                map.on("mouseleave", "state-fills", function () {
+                    if (hoveredStateId) {
+                        map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: false });
+                    }
+                    hoveredStateId = null;
+                    tooltip.style("visibility", "hidden");
+                });
+
+                map.on("click", "state-fills", function (thisElement) {
+
+                });
+            });
+        }
+        function language() {
+            map.on('load', function () {
+                map.addSource("states", {
+                    "type": "geojson",
+                    "data": boundaries
+                });
+                // The feature-state dependent fill-opacity expression will render the hover effect
+                // when a feature's hover state is set to true.
+
+
+
+                languageColor = [{ 'id': 1, 'language': 'Vietnamese', 'color': '#EEC7C3' }, { 'id': 2, 'language': 'Italian', 'color': '#844773' }, { 'id': 3, 'language': 'Punjabi', 'color': '#375EB3' }, { 'id': 4, 'language': 'Greek', 'color': '#CABD27' }, { 'id': 5, 'language': 'Arabic', 'color': '#D43155' }, { 'id': 6, 'language': 'Mandarin', 'color': '#E492CE' }, { 'id': 7, 'language': 'French', 'color': '#B4766D' }, { 'id': 8, 'language': 'German', 'color': '#54E859' }, { 'id': 9, 'language': 'Cantonese', 'color': '#2937C6' }, { 'id': 10, 'language': 'Dutch', 'color': '#E7C92A' }, { 'id': 11, 'language': 'Sinhalese', 'color': '#4FD755' }, { 'id': 12, 'language': 'Tagalog', 'color': '#C45DEA' }, { 'id': 13, 'language': 'Hindi', 'color': '#FBCA22' }, { 'id': 14, 'language': 'Hebrew', 'color': '#E55A49' }, { 'id': 15, 'language': 'Russian', 'color': '#1F73F1' }, { 'id': 16, 'language': 'Turkish', 'color': '#C86AA5' }, { 'id': 17, 'language': 'Samoan', 'color': '#C93EC2' }, { 'id': 18, 'language': 'Japanese', 'color': '#7A5F3A' }, { 'id': 19, 'language': 'Dari', 'color': '#F3BB57' }, { 'id': 20, 'language': 'Albanian', 'color': '#655C79' }, { 'id': 21, 'language': 'Serbian', 'color': '#81E1E4' }, { 'id': 22, 'language': 'Macedonian', 'color': '#112318' }, { 'id': 23, 'language': 'Bosnian', 'color': '#BBF8DF' }, { 'id': 24, 'language': 'Afrikaans', 'color': '#CA3EB6' }, { 'id': 25, 'language': 'Somali', 'color': '#D79E64' }, { 'id': 26, 'language': 'Maltese', 'color': '#6CBD43' }, { 'id': 27, 'language': 'Spanish', 'color': '#2ADD8A' }, { 'id': 28, 'language': 'Maori (New Zealand)', 'color': '#8E1372' }, { 'id': 29, 'language': 'Yiddish', 'color': '#C51569' }]
+
+
+
+                map.addLayer({
+                    "id": "state-fills",
+                    "type": "fill",
+                    "source": "states",
+                    "layout": {},
+                    'paint': {
+                        'fill-color': {
+                            "property": "main_language_id", "stops": [[0, 'white'],
+                            [1, '#EEC7C3'],
+                            [2, '#844773'],
+                            [3, '#375EB3'],
+                            [4, '#CABD27'],
+                            [5, '#D43155'],
+                            [6, '#E492CE'],
+                            [7, '#B4766D'],
+                            [8, '#54E859'],
+                            [9, '#2937C6'],
+                            [10, '#E7C92A'],
+                            [11, '#4FD755'],
+                            [12, '#C45DEA'],
+                            [13, '#FBCA22'],
+                            [14, '#E55A49'],
+                            [15, '#1F73F1'],
+                            [16, '#C86AA5'],
+                            [17, '#C93EC2'],
+                            [18, '#7A5F3A'],
+                            [19, '#F3BB57'],
+                            [20, '#655C79'],
+                            [21, '#81E1E4'],
+                            [22, '#112318'],
+                            [23, '#BBF8DF'],
+                            [24, '#CA3EB6'],
+                            [25, '#D79E64'],
+                            [26, '#6CBD43'],
+                            [27, '#2ADD8A'],
+                            [28, '#8E1372'],
+                            [29, '#C51569']]
+                        }, 'fill-opacity':
+                            ["case",
+                                ["boolean", ["feature-state", "hover"], false], 1, 0.5
+                            ]
+                    },
+                });
+
+                map.addLayer({
+                    "id": "state-borders",
+                    "type": "line",
+                    "source": "states",
+                    "layout": {},
+                    "paint": {
+                        "line-color": "#627BC1",
+                        "line-width": 1
+                    }
+                });
+                var tooltip = d3.select("body")
+                    .append("div")
+                    .style("border-style", "solid")
+                    .style("border-width", "1px")
+                    .style("background-color", "lightgray")
+                    .style("position", "absolute")
+                    .style("opacity", 0.8)
+                    .style("visibility", "visible");
+                var Ddata;
+                $.ajax({
+                    url: "/Education/GetJsonFromFile",
+                    type: "GET",//请求方式为get
+                    dataType: "json", //返回数据格式为json
+                    data: { path: "~/json/Language.json" },
+                    async: false,//是否同步
+                    success: function (data) {//请求成功完成后要执行的方法
+                        Ddata = data;
+                    },
+                    error: function () {
+                        console.log("error");
+                    }
+                })
+
+                // When the user moves their mouse over the state-fill layer, we'll update the
+                // feature state for the feature under the mouse.
+                map.on("mousemove", "state-fills", function (thisElement) {
+                    if (thisElement.features.length > 0) {
+                        if (hoveredStateId) {
+                            map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: false });
+                        }
+                        hoveredStateId = thisElement.features[0].id;
+                        map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: true });
+                    }
+                    tooltip.style("visibility", "visible").text(thisElement.features[0].properties.vic_loca_2);
+                    tooltip.style("top", (thisElement.point.y - 10) + "px").style("left", (thisElement.point.x + 10) + "px");
+
+                    clicked = thisElement.features[0].properties.vic_loca_2;
+                    Ddata.forEach(function (e) {
+                        if (e["Suburb"].toUpperCase() == clicked) {
+                            barchartForLanguage(e);
+                        }
+                    })
+                });
+
+                // When the mouse leaves the state-fill layer, update the feature state of the
+                // previously hovered feature.
+                map.on("mouseleave", "state-fills", function () {
+                    if (hoveredStateId) {
+                        map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: false });
+                    }
+                    hoveredStateId = null;
+                    tooltip.style("visibility", "hidden");
+                });
+
+                map.on("click", "state-fills", function (thisElement) {
+
+                });
+            });
+        }
+        function barchartForCountry(e) {
+            d3.select("g").remove();
+            var x = d3.scale.ordinal().rangeRoundBands([0, width], .5);
+
+            var y = d3.scale.linear().range([height, 0]);
+
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left")
+                .ticks(10);
+
+            svg = d3.select(canvas).append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform","translate(" + 30 + "," + 10 + ")");
+            data = [{ "CountryName": e["Top country of birth"], "value": e["Top country of birth, %"] },
+            { "CountryName": e["2nd top country of birth"], "value": e["2nd top country of birth, %"] },
+            { "CountryName": e["3rd top country of birth"], "value": e["3rd top country of birth, %"] },
+            { "CountryName": e["4th top country of birth"], "value": e["4th top country of birth, %"] },
+            { "CountryName": e["5th top country of birth"], "value": e["5th top country of birth, %"] },];
+            data.forEach(function (d) {
+                d.CountryName = d.CountryName;
+                d.value = +d.value;
+            });
+            //console.log(data);
+            x.domain(data.map(function (d) { return d.CountryName; }));
+            y.domain([0, d3.max(data, function (d) { return d.value; })]);
+
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", "-.55em")
+                .attr("transform", "rotate(-90)");
+
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.32em")
+                .style("text-anchor", "end")
+                .text("Value ($)");
+
+            svg.selectAll("bar")
+                .data(data)
+                .enter().append("rect")
+                .style("fill", "steelblue")
+                .attr("x", function (d) { return x(d.CountryName); })
+                .attr("width", x.rangeBand())
+                .attr("y", function (d) { return y(d.value); })
+                .attr("height", function (d) { return height - y(d.value); });
+
+            svg.selectAll("rect")
+                .on("mouseover", function (thisElement, index) {
+                    tooltip1.style("visibility", "visible").text(thisElement["value"]);
+                    d3.selectAll("rect").attr("opacity", 0.7); // grey out all circles
+                    d3.select(this).attr("opacity", 1);
+                })
+                .on("mousemove", function () { tooltip1.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px"); })
+                .on("mouseout", function (thisElement, index) {
+                    tooltip1.style("visibility", "hidden");
+                    svg.selectAll("rect") // restore all circles to normal mode
+                        .attr("opacity", 1);
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //            var data=new Array();
+            //            data[0]=e;
+            //            for(var i=oDivs1.childNodes.length-1;i>=0;i--){
+            //                var childNode = oDivs1.childNodes[i];
+            //                oDivs1.removeChild(childNode);
+            //            }
+            //            d3.select(oDivs1).insert("h2", ":first-child").text(clicked);
+            //
+            //        // Canvas width and height
+            //        var width = 600;
+            //        var height = 300;
+            //
+            //        // Create a SVG canvas
+            //
+            //        // We want some margin between the boundary of the canvas and the bar charts
+            //        var margin = {top: 110, right: 20, bottom: 30, left: 50};
+            //        width = width - margin.left - margin.right;
+            //        height = height - margin.top - margin.bottom;
+            //        svg1.selectAll("g").remove();
+            //        // create the area to draw the bar chart
+            //        // g is a SVG element to group multiple SVG elements
+            //        var barChartArea = svg1
+            //            .append("g")
+            //            .attr("transform", "translate(" + 40 + "," + 410 + ")");
+            //
+            //        // Set up a helpr function to divide x axis
+            //        var x0 = d3.scaleBand()
+            //            .rangeRound([0, 800])
+            //            .paddingInner(0.2); // padding between different groups
+            //
+            //        // two property for each group
+            //        var keys = [];
+            //        keys.push(e["Main cultural group 2 (name)"]);
+            //        keys.push(e["Main cultural group 3 (name)"]);
+            //        keys.push(e["Main cultural group 4 (name)"]);
+            //        // Set up a helpr function to divide x axis **within** a group
+            //
+            //        // helper function to calculate the height of each bar
+            //
+            //
+            //            //console.log(data);
+            //
+            //            //var x0 = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+            //        var x0 = d3.scaleBand().range ([0, width]).padding(0.4);
+            //            // for differetn groups
+            //            x0.domain(keys);
+            //            // for properties within a group
+            //            //x0.rangeRound([0, x0.bandwidth()]);
+            //            // for bar height
+            //            getMax = {};
+            //            getMax["Main cultural group 2 (percentage)"] = e["Main cultural group 2 (percentage)"];
+            //            getMax["Main cultural group 3 (percentage)"] = e["Main cultural group 3 (percentage)"];
+            //            getMax["Main cultural group 4 (percentage)"] = e["Main cultural group 4 (percentage)"];
+            //            var y = d3.scaleLinear().rangeRound([160, -40]);
+            //            y.domain([0, 0.6
+            ////                      d3.max(getMax, function(d) {
+            ////                return d.value;
+            ////            })
+            //                     ]);
+            //        console.log(y(0.3));
+            //            var strmax ='';
+            //            var floatmax = 0;
+            //
+            //            var keys2 = [];
+            //            keys2.push("Main cultural group 2 (percentage)");
+            //            keys2.push("Main cultural group 3 (percentage)");
+            //            keys2.push("Main cultural group 4 (percentage)");
+            //
+            //
+            //            barChartArea.append("g")
+            //                .selectAll("g")
+            //                .data(data)
+            //                .enter().append("g")
+            //                // create groups
+            //                .attr("transform", function(d) { return "translate(" + 0 + ",0)"; })
+            //                .selectAll("rect")
+            //                // pre-processing the data
+            //                .data(function(d) {
+            //                    return keys2.map(function(key) {
+            //                        if (parseFloat(d[key])>floatmax)
+            //                            {floatmax = parseFloat(d[key]);
+            //                             strmax = key;}
+            //                        return {
+            //                            key: key,
+            //                            value: parseFloat(d[key]),
+            //
+            //                        };
+            //                    });
+            //                })
+            //                .enter().append("rect")
+            //                // start drawing bars for each property and each group
+            //                .attr("x", function(d) {
+            //                //console.log(d["key"])
+            //                    return x0(d["key"]);
+            //                })
+            //                .attr("y", function(d) {
+            //                console.log(d["value"])
+            //                    return y(d["value"]);
+            //                })
+            //                .attr("width", x0.bandwidth())
+            //                .attr("height", function(d) { return height - y(d["value"]); })
+            //                .attr("fill", function(d) {
+            //                    if(d["key"] === strmax)
+            //                    {
+            //                        return "red";
+            //                    }
+            //                    else
+            //                    {
+            //                        return "#3FE2E2";
+            //                    }
+            //                })
+            //;
+            //
+            //            // add x axis with ticks
+            //            barChartArea.append("g")
+            //                .attr("class", "axis")
+            //                .attr("transform", "translate(0," + height + ")")
+            //                .call(d3.axisBottom(x0));
+            //
+            //            // add y axis with ticks
+            //            barChartArea.append("g")
+            //                .attr("class", "axis")
+            //                .call(d3.axisLeft(y).ticks(null, "s"))
+            //                .append("text")
+            //                .attr("x", 2)
+            //                .attr("y", y(y.ticks().pop()) +0.5)
+            //                .attr("dy", "0.32em");
+            //            barChartArea.selectAll("rect")
+            //                .on("mouseover", function(thisElement, index){
+            //                    tooltip1.style("visibility", "visible")
+            //                                    .text(thisElement["value"]);
+            //                    d3.selectAll("rect")
+            //                        .attr("opacity", 0.5); // grey out all circles
+            //                    d3.select(this) // hightlight the on hovering on
+            //                        .attr("opacity", 1);
+            //                })
+            //                .on("mousemove", function(){tooltip1.style("top",
+            //                    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+            //                .on("mouseout", function(thisElement, index){
+            //                    tooltip1.style("visibility", "hidden");
+            //                    barChartArea.selectAll("rect") // restore all circles to normal mode
+            //                        .attr("opacity", 1);
+            //                });
+            //
+
+        }
+        function barchartForLanguage(e) {
+            d3.select("g").remove();
+            svg = d3.select(canvas).append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + 30 + "," + 10 + ")");
+            var x = d3.scale.ordinal().rangeRoundBands([0, width], .5);
+
+            var y = d3.scale.linear().range([height, 0]);
+
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom");
+
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left")
+                .ticks(10);
+
+
+            data = [{ "LanguageName": e["Top language spoken"], "value": e["Top language spoken, %"] },
+            { "LanguageName": e["2nd top language spoken"], "value": e["2nd top language spoken, %"] },
+            { "LanguageName": e["3rd top language spoken"], "value": e["3rd top language spoken, %"] },
+            { "LanguageName": e["4th top language spoken"], "value": e["4th top language spoken, %"] },
+            { "LanguageName": e["5th top language spoken"], "value": e["5th top language spoken, %"] },];
+            data.forEach(function (d) {
+                d.LanguageName = d.LanguageName;
+                d.value = +d.value;
+            });
+            //console.log(data);
+            x.domain(data.map(function (d) { return d.LanguageName; }));
+            y.domain([0, d3.max(data, function (d) { return d.value; })]);
+            svg.append("g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", "-.55em")
+                .attr("transform", "rotate(-90)");
+
+            svg.append("g")
+                .attr("class", "y axis")
+                .call(yAxis)
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.32em")
+                .style("text-anchor", "end")
+                .text("percentage of language %");
+
+            svg.selectAll("bar")
+                .data(data)
+                .enter().append("rect")
+                .style("fill", "steelblue")
+                .attr("x", function (d) { return x(d.LanguageName); })
+                .attr("width", x.rangeBand())
+                .attr("y", function (d) { return y(d.value); })
+                .attr("height", function (d) { return height - y(d.value); });
+
+            svg.selectAll("rect")
+                .on("mouseover", function (thisElement, index) {
+                    tooltip1.style("visibility", "visible").text(thisElement["value"]);
+                    d3.selectAll("rect").attr("opacity", 0.7); // grey out all circles
+                    d3.select(this).attr("opacity", 1);
+                })
+                .on("mousemove", function () { tooltip1.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px"); })
+                .on("mouseout", function (thisElement, index) {
+                    tooltip1.style("visibility", "hidden");
+                    svg.selectAll("rect") // restore all circles to normal mode
+                        .attr("opacity", 1);
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //            var data=new Array();
+            //            data[0]=e;
+            //            for(var i=oDivs1.childNodes.length-1;i>=0;i--){
+            //                var childNode = oDivs1.childNodes[i];
+            //                oDivs1.removeChild(childNode);
+            //            }
+            //            d3.select(oDivs1).insert("h2", ":first-child").text(clicked);
+            //
+            //        // Canvas width and height
+            //        var width = 600;
+            //        var height = 300;
+            //
+            //        // Create a SVG canvas
+            //
+            //        // We want some margin between the boundary of the canvas and the bar charts
+            //        var margin = {top: 110, right: 20, bottom: 30, left: 50};
+            //        width = width - margin.left - margin.right;
+            //        height = height - margin.top - margin.bottom;
+            //        svg1.selectAll("g").remove();
+            //        // create the area to draw the bar chart
+            //        // g is a SVG element to group multiple SVG elements
+            //        var barChartArea = svg1
+            //            .append("g")
+            //            .attr("transform", "translate(" + 40 + "," + 410 + ")");
+            //
+            //        // Set up a helpr function to divide x axis
+            //        var x0 = d3.scaleBand()
+            //            .rangeRound([0, 800])
+            //            .paddingInner(0.2); // padding between different groups
+            //
+            //        // two property for each group
+            //        var keys = [];
+            //        keys.push(e["Main cultural group 2 (name)"]);
+            //        keys.push(e["Main cultural group 3 (name)"]);
+            //        keys.push(e["Main cultural group 4 (name)"]);
+            //        // Set up a helpr function to divide x axis **within** a group
+            //
+            //        // helper function to calculate the height of each bar
+            //
+            //
+            //            //console.log(data);
+            //
+            //            //var x0 = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+            //        var x0 = d3.scaleBand().range ([0, width]).padding(0.4);
+            //            // for differetn groups
+            //            x0.domain(keys);
+            //            // for properties within a group
+            //            //x0.rangeRound([0, x0.bandwidth()]);
+            //            // for bar height
+            //            getMax = {};
+            //            getMax["Main cultural group 2 (percentage)"] = e["Main cultural group 2 (percentage)"];
+            //            getMax["Main cultural group 3 (percentage)"] = e["Main cultural group 3 (percentage)"];
+            //            getMax["Main cultural group 4 (percentage)"] = e["Main cultural group 4 (percentage)"];
+            //            var y = d3.scaleLinear().rangeRound([160, -40]);
+            //            y.domain([0, 0.6
+            ////                      d3.max(getMax, function(d) {
+            ////                return d.value;
+            ////            })
+            //                     ]);
+            //        console.log(y(0.3));
+            //            var strmax ='';
+            //            var floatmax = 0;
+            //
+            //            var keys2 = [];
+            //            keys2.push("Main cultural group 2 (percentage)");
+            //            keys2.push("Main cultural group 3 (percentage)");
+            //            keys2.push("Main cultural group 4 (percentage)");
+            //
+            //
+            //            barChartArea.append("g")
+            //                .selectAll("g")
+            //                .data(data)
+            //                .enter().append("g")
+            //                // create groups
+            //                .attr("transform", function(d) { return "translate(" + 0 + ",0)"; })
+            //                .selectAll("rect")
+            //                // pre-processing the data
+            //                .data(function(d) {
+            //                    return keys2.map(function(key) {
+            //                        if (parseFloat(d[key])>floatmax)
+            //                            {floatmax = parseFloat(d[key]);
+            //                             strmax = key;}
+            //                        return {
+            //                            key: key,
+            //                            value: parseFloat(d[key]),
+            //
+            //                        };
+            //                    });
+            //                })
+            //                .enter().append("rect")
+            //                // start drawing bars for each property and each group
+            //                .attr("x", function(d) {
+            //                //console.log(d["key"])
+            //                    return x0(d["key"]);
+            //                })
+            //                .attr("y", function(d) {
+            //                console.log(d["value"])
+            //                    return y(d["value"]);
+            //                })
+            //                .attr("width", x0.bandwidth())
+            //                .attr("height", function(d) { return height - y(d["value"]); })
+            //                .attr("fill", function(d) {
+            //                    if(d["key"] === strmax)
+            //                    {
+            //                        return "red";
+            //                    }
+            //                    else
+            //                    {
+            //                        return "#3FE2E2";
+            //                    }
+            //                })
+            //;
+            //
+            //            // add x axis with ticks
+            //            barChartArea.append("g")
+            //                .attr("class", "axis")
+            //                .attr("transform", "translate(0," + height + ")")
+            //                .call(d3.axisBottom(x0));
+            //
+            //            // add y axis with ticks
+            //            barChartArea.append("g")
+            //                .attr("class", "axis")
+            //                .call(d3.axisLeft(y).ticks(null, "s"))
+            //                .append("text")
+            //                .attr("x", 2)
+            //                .attr("y", y(y.ticks().pop()) +0.5)
+            //                .attr("dy", "0.32em");
+            //            barChartArea.selectAll("rect")
+            //                .on("mouseover", function(thisElement, index){
+            //                    tooltip1.style("visibility", "visible")
+            //                                    .text(thisElement["value"]);
+            //                    d3.selectAll("rect")
+            //                        .attr("opacity", 0.5); // grey out all circles
+            //                    d3.select(this) // hightlight the on hovering on
+            //                        .attr("opacity", 1);
+            //                })
+            //                .on("mousemove", function(){tooltip1.style("top",
+            //                    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+            //                .on("mouseout", function(thisElement, index){
+            //                    tooltip1.style("visibility", "hidden");
+            //                    barChartArea.selectAll("rect") // restore all circles to normal mode
+            //                        .attr("opacity", 1);
+            //                });
+            //
+
+    }
+    </script>
+
+</body >
+</html >
