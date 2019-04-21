@@ -54,7 +54,6 @@
 <body>
 
     <div id='map'></div>
-    <div id='bar'></div>
     <script>
         var boundaries;
         var country;
@@ -83,17 +82,12 @@
             center: [144.964194, -37.824898],
             zoom: 10
         });
-        var tooltip1 = d3.select("body")
-            .append("div")
-            .style("border-style", "solid")
-            .style("border-width", "1px")
-            .style("background-color", "lightgray")
-            .style("position", "absolute")
-            .style("opacity", 0.8)
-            .style("visibility", "visible");
         var svg;
+
+        
+        var svgContainer;
         var canvas = map.getCanvasContainer();
-        language();
+        country();
         function country() {
             map.on('load', function () {
                 map.addSource("states", {
@@ -352,12 +346,24 @@
                 .scale(y)
                 .orient("left")
                 .ticks(10);
-
-            svg = d3.select(canvas).append("svg")
+            svg = d3.select("body").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
-                .attr("transform","translate(" + 30 + "," + 10 + ")");
+                .attr("transform", "translate(" + 30 + "," + 10 + ")");
+            var tooltip1 = d3.select("body")
+                .append("div")
+                .style("border-style", "solid")
+                .style("border-width", "1px")
+                .style("background-color", "lightgray")
+                .style("position", "absolute")
+                .style("opacity", 0.8)
+                .style("visibility", "visible");
+           // svg = d3.select(canvas).append("svg")
+           //     .attr("width", width + margin.left + margin.right)
+          //      .attr("height", height + margin.top + margin.bottom)
+           //     .append("g")
+           //     .attr("transform","translate(" + 30 + "," + 10 + ")");
             data = [{ "CountryName": e["Top country of birth"], "value": e["Top country of birth, %"] },
             { "CountryName": e["2nd top country of birth"], "value": e["2nd top country of birth, %"] },
             { "CountryName": e["3rd top country of birth"], "value": e["3rd top country of birth, %"] },
@@ -597,11 +603,24 @@
         }
         function barchartForLanguage(e) {
             d3.select("g").remove();
-            svg = d3.select(canvas).append("svg")
+           // svg = d3.select(canvas).append("svg")
+           //     .attr("width", width + margin.left + margin.right)
+           //     .attr("height", height + margin.top + margin.bottom)
+           //     .append("g")
+            //    .attr("transform", "translate(" + 30 + "," + 10 + ")");
+            svg = d3.select("body").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform", "translate(" + 30 + "," + 10 + ")");
+            var tooltip1 = d3.select("body")
+                .append("div")
+                .style("border-style", "solid")
+                .style("border-width", "1px")
+                .style("background-color", "lightgray")
+                .style("position", "absolute")
+                .style("opacity", 0.8)
+                .style("visibility", "visible");
             var x = d3.scale.ordinal().rangeRoundBands([0, width], .5);
 
             var y = d3.scale.linear().range([height, 0]);
@@ -664,7 +683,7 @@
                     d3.select(this).attr("opacity", 1);
                 })
                 .on("mousemove", function () { tooltip1.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px"); })
-                .on("mouseout", function (thisElement, index) {
+                .on("mouseleave", function (thisElement, index) {
                     tooltip1.style("visibility", "hidden");
                     svg.selectAll("rect") // restore all circles to normal mode
                         .attr("opacity", 1);
