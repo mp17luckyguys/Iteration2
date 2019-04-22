@@ -12,7 +12,7 @@ namespace FamilyGo.Controllers
 {
     public class GamesController : Controller
     {
-        private FamilyGoiteration1_dbEntities db = new FamilyGoiteration1_dbEntities();
+        private FamilyGoiteration2_dbEntities1 db = new FamilyGoiteration2_dbEntities1();
 
         // GET: Games
         public ActionResult Index()

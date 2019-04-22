@@ -31,6 +31,8 @@ namespace FamilyGo.Controllers
             //ex.Page_Load();
             //ExcelToDBSportPlaces ex2 = new ExcelToDBSportPlaces();
             //ex2.Page_Load();
+            //ExcelToDBPSchool ex = new ExcelToDBPSchool();
+            //ex.Page_Load();
             return View();
         }
 

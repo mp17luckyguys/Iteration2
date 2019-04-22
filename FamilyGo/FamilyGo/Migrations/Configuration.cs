@@ -5,14 +5,14 @@ namespace FamilyGo.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<FamilyGo.Models.FamilyGoiteration1_dbEntities>
+    internal sealed class Configuration : DbMigrationsConfiguration<FamilyGo.Models.FamilyGoiteration2_dbEntities1>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(FamilyGo.Models.FamilyGoiteration1_dbEntities context)
+        protected override void Seed(FamilyGo.Models.FamilyGoiteration2_dbEntities1 context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -17,7 +17,7 @@ namespace FamilyGo.Controllers
 {
     public class PlacesController : Controller
     {
-        private FamilyGoiteration1_dbEntities db = new FamilyGoiteration1_dbEntities();
+        private FamilyGoiteration2_dbEntities1 db = new FamilyGoiteration2_dbEntities1();
 
         // GET: Places
         /*       public ActionResult Index()
