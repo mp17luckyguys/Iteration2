@@ -29,5 +29,6 @@ namespace FamilyGo.Models
         public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<Place> Places { get; set; }
         public virtual DbSet<School> Schools { get; set; }
+        public virtual DbSet<Suburb> Suburbs { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FamilyGoiteration2_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FamilyGoiteration2_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activities">
           <Key>
             <PropertyRef Name="ActivityId" />
@@ -51,6 +51,17 @@
           <Property Name="Y" Type="nvarchar(max)" />
           <Property Name="Secondary_language" Type="nvarchar(max)" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“FamilyGoiteration2_db.dbo.Suburbs”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Suburbs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SuburbName" Type="nvarchar(max)" />
+          <Property Name="Lat" Type="nvarchar(max)" />
+          <Property Name="Lon" Type="nvarchar(max)" />
+        </EntityType>
         <Association Name="FK_ActivityPlace">
           <End Role="Activities" Type="Self.Activities" Multiplicity="1" />
           <End Role="Places" Type="Self.Places" Multiplicity="*" />
@@ -81,13 +92,20 @@
     [Schools].[Secondary_language] AS [Secondary_language]
     FROM [dbo].[Schools] AS [Schools]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="Suburbs" EntityType="Self.Suburbs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Suburbs].[Id] AS [Id], 
+    [Suburbs].[SuburbName] AS [SuburbName], 
+    [Suburbs].[Lat] AS [Lat], 
+    [Suburbs].[Lon] AS [Lon]
+    FROM [dbo].[Suburbs] AS [Suburbs]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_ActivityPlace" Association="Self.FK_ActivityPlace">
             <End Role="Activities" EntitySet="Activities" />
             <End Role="Places" EntitySet="Places" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FamilyGoiteration2_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -158,7 +176,17 @@
             <End Role="Activities" EntitySet="Activities" />
             <End Role="Places" EntitySet="Places" />
           </AssociationSet>
+          <EntitySet Name="Suburbs" EntityType="FamilyGoiteration2_dbModel.Suburb" />
         </EntityContainer>
+        <EntityType Name="Suburb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SuburbName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -210,6 +238,16 @@
                 <ScalarProperty Name="X" ColumnName="X" />
                 <ScalarProperty Name="Y" ColumnName="Y" />
                 <ScalarProperty Name="Secondary_language" ColumnName="Secondary_language" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suburbs">
+            <EntityTypeMapping TypeName="FamilyGoiteration2_dbModel.Suburb">
+              <MappingFragment StoreEntitySet="Suburbs">
+                <ScalarProperty Name="Lon" ColumnName="Lon" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="SuburbName" ColumnName="SuburbName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
