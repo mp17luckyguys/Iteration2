@@ -51,7 +51,6 @@
         }
 
         #svg1 {
-            height: 210px;
             width: 120px;
             border-style: solid;
             border-color: darkgray;
@@ -147,6 +146,50 @@
             cursor: pointer;
             padding: 0;
         }
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* The actual popup */
+        .popup .popuptext {
+            visibility: hidden;
+            width: 260px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+        }
+
+        /* Popup arrow */
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        /* Toggle this class - hide and show the popup */
+        .popup .show {
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
     </style>
 </head>
     <body>
@@ -159,13 +202,17 @@
                         </li>
                         <li>
                             <input type="radio" name="check" id="active2" value="language"><label for="active2">Language</label>
-                            <div id="languageFilter">Language</div>
+                            <div id="languageFilter">
+                                Which Country Are You Looking For<br /><select id="selectLanguage" onchange="languageChange(this)"></select><br />
+                                Which Suburb Are You Looking For<br /><select id="selectSuburbL" onchange="suburbChange(this)"></select><br />
+                                <button id="clearButton">Clear</button>
+                            </div>
                         </li>
                         <li>
                             <input type="radio" name="check" id="active3" value="country"><label for="active3">Country</label>
                             <div id="countryFilter">
                                 Which Country Are You Looking For<br/><select id="selectCountry" onchange="countryChange(this)"></select><br/>
-                                Which Suburb Are You Looking For<br/><select id="selectSuburb" onchange="suburbChange(this)"></select><br/>
+                                Which Suburb Are You Looking For<br/><select id="selectSuburbC" onchange="suburbChange(this)"></select><br/>
                                 <button id="clearButton">Clear</button>
                             </div>
                         </li>
@@ -174,11 +221,29 @@
             <div class = "col-lg-10" id='map'></div>
         </div>
         <script>
+            var countryFunction = false;
+            var languageFunction = false;
+
             $(function () {
                 $(":radio").click(function () {
                     if ($(this).val() == "information") { alert("您是..." + $(this).val());}
-                    if ($(this).val() == "country") { country(); }
-                    if ($(this).val() == "language") { language(); }
+                    if ($(this).val() == "country") {
+                        countryFunction = true;
+                        if (document.getElementById("selectCountry").options[0])
+                        { document.getElementById("selectCountry").options[0].selected = true; }
+                        //
+                        loadSuburb();
+                        document.getElementById("selectSuburbC").options[0].selected = true;
+                        country();
+                    }
+                    if ($(this).val() == "language") {
+                        languageFunction = true;
+                        if (document.getElementById("selectLanguage").options[0])
+                        { document.getElementById("selectLanguage").options[0].selected = true; }
+                        loadSuburb();
+                        document.getElementById("selectSuburbL").options[0].selected = true;
+                        language();
+                    }
                 });
             });
         </script>
@@ -218,8 +283,10 @@
             var svg;
             var svgContainer;
             var canvas = map.getCanvasContainer();
-            country();
+            language();
             function country() {
+                d3.select("#svg").remove();
+                d3.select("#svg1").remove();
                 map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/streets-v11',
@@ -233,6 +300,7 @@
                     });
                     svg1 = d3.select("body").append("svg")
                         .attr("id", "svg1")
+                        .attr("style", "height:200px")
                         .attr("transform", "translate(" + 10 + "," + 10 + ")");
                     legendArea = svg1.append("g")
                         .attr("transform", "translate(0,20)");
@@ -364,6 +432,8 @@
                 });
             }
             function language() {
+                d3.select("#svg").remove();
+                d3.select("#svg1").remove();
                 map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/streets-v11',
@@ -378,6 +448,7 @@
 
                     svg1 = d3.select("body").append("svg")
                         .attr("id", "svg1")
+                        .attr("style", "height:330px")
                         .attr("transform", "translate(" + 10 + "," + 10 + ")");
                     legendArea = svg1.append("g")
                         .attr("transform", "translate(0,20)");
@@ -498,7 +569,7 @@
                             map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: true });
                         }
                         tooltip.style("visibility", "visible").text(thisElement.features[0].properties.vic_loca_2);
-                        tooltip.style("top", (thisElement.point.y - 10) + "px").style("left", (thisElement.point.x + 10) + "px");
+                        tooltip.style("top", (thisElement.point.y + 20) + "px").style("left", (thisElement.point.x + 310) + "px");
 
                         clicked = thisElement.features[0].properties.vic_loca_2;
                         Ddata.forEach(function (e) {
@@ -523,8 +594,8 @@
                 });
             }
             function barchartForCountry(e) {
-                d3.select("#svg").selectAll("g").remove();
-
+                d3.select("#svg").remove();
+                d3.select("#tooltip1").remove();
                 var x = d3.scale.ordinal().rangeRoundBands([0, width], .5);
 
                 var y = d3.scale.linear().range([height, 0]);
@@ -545,6 +616,7 @@
                     .attr("transform", "translate(" + 30 + "," + 10 + ")");
                 var tooltip1 = d3.select("body")
                     .append("div")
+                    .attr("id", "tooltip1")
                     .style("border-style", "solid")
                     .style("border-width", "1px")
                     .style("background-color", "lightgray")
@@ -608,7 +680,8 @@
                     });
             }
             function barchartForLanguage(e) {
-                d3.select("#svg").selectAll("g").remove();
+                d3.select("#svg").remove();
+                d3.select("#tooltip1").remove();
 
                 svg = d3.select("body").append("svg")
                     .attr("id", "svg")
@@ -618,6 +691,7 @@
                     .attr("transform", "translate(" + 30 + "," + 10 + ")");
                 var tooltip1 = d3.select("body")
                     .append("div")
+                    .attr("id", "tooltip1")
                     .style("border-style", "solid")
                     .style("border-width", "1px")
                     .style("background-color", "lightgray")
@@ -694,16 +768,26 @@
         </script>
         <script>
             var selectCountry = document.getElementById("selectCountry");
-            var selectSuburb = document.getElementById("selectSuburb");
+            var selectLanguage = document.getElementById("selectLanguage");
+            var selectSuburbL = document.getElementById("selectSuburbL");
+            var selectSuburbC = document.getElementById("selectSuburbC");
             var countrySelected = 0;
+            var languageSelected = 0;
             var suburbs = [];
             selectCountry.options.add(new Option("select country",0))
             for (var i = 0; i < countryColor.length; i++) {
                 selectCountry.options.add(new Option(countryColor[i]["country"], countryColor[i]["id"]));
             }
+            selectLanguage.options.add(new Option("select language", 0))
+            for (var i = 0; i < languageColor.length; i++) {
+                selectLanguage.options.add(new Option(languageColor[i]["language"], languageColor[i]["id"]));
+            }
 
             function countryChange(obj)
             {
+                document.getElementById("svg1").style.display = "block";
+                var a = document.getElementById("svg");
+                if (a) { document.getElementById("svg").style.display = "block"; }
                 $('.marker').remove();
                 map.setLayoutProperty("state-fills", 'visibility', 'visible');
                 map.setLayoutProperty("state-borders", 'visibility', 'visible');
@@ -721,23 +805,67 @@
                 }
                 loadSuburb();
             }
+            function languageChange(obj) {
+                document.getElementById("svg1").style.display = "block";
+                var a = document.getElementById("svg");
+                if (a) { document.getElementById("svg").style.display = "block"; }
+                $('.marker').remove();
+                map.setLayoutProperty("state-fills", 'visibility', 'visible');
+                map.setLayoutProperty("state-borders", 'visibility', 'visible');
+                map.flyTo({
+                    center: [144.964194, -37.824898],
+                    zoom: 10
+                });
+                var m = parseInt(obj.options[obj.selectedIndex].value);
+                languageSelected = m;
+                if (m != 0) {
+                    map.setPaintProperty("state-fills", 'fill-color', {
+                        "property": "main_language_id",
+                        "stops": [[m - 1, 'white'], [m, 'gray'], [m + 1, 'white']]
+                    });
+                }
+                loadSuburb();
+            }
             loadSuburb();
             function loadSuburb() {
-                selectSuburb.options.length = 0;
-                suburbs = [];
-                for (var i = 0; i < boundaries["features"].length; i++) {
-                    if (countrySelected == 0) { suburbs.push(boundaries["features"][i]); }
-                    else {
-                        if (countrySelected == boundaries["features"][i]["main_country_id"]) { suburbs.push(boundaries["features"][i]); }
-                    }
+                if (countryFunction)
+                {
+                    selectSuburbC.options.length = 0;
+                    suburbs = [];
+                    for (var i = 0; i < boundaries["features"].length; i++) {
+                        if (countrySelected == 0) { suburbs.push(boundaries["features"][i]); }
+                        else {
+                            if (countrySelected == boundaries["features"][i]["main_country_id"]) { suburbs.push(boundaries["features"][i]); }
+                        }
 
+                    }
+                    selectSuburbC.options.add(new Option("select suburb", 0))
+                    for (var i = 0; i < suburbs.length; i++) {
+                        selectSuburbC.options.add(new Option(suburbs[i]["properties"]["vic_loca_2"].toLowerCase(), suburbs[i]["properties"]["vic_loca_2"].toUpperCase()));
+                    }
                 }
-                selectSuburb.options.add(new Option("select suburb", 0))
-                for (var i = 0; i < suburbs.length; i++) {
-                    selectSuburb.options.add(new Option(suburbs[i]["properties"]["vic_loca_2"].toLowerCase(), suburbs[i]["properties"]["vic_loca_2"].toUpperCase()));
+                if (languageFunction)
+                {
+                    selectSuburbL.options.length = 0;
+                    suburbs = [];
+                    for (var i = 0; i < boundaries["features"].length; i++) {
+                        if (languageSelected == 0) { suburbs.push(boundaries["features"][i]); }
+                        else {
+                            if (languageSelected == boundaries["features"][i]["main_language_id"]) { suburbs.push(boundaries["features"][i]); }
+                        }
+                    }
+                    selectSuburbL.options.add(new Option("select suburb", 0))
+                    for (var i = 0; i < suburbs.length; i++) {
+                        selectSuburbL.options.add(new Option(suburbs[i]["properties"]["vic_loca_2"].toLowerCase(), suburbs[i]["properties"]["vic_loca_2"].toUpperCase()));
+                    }
                 }
+
             }
             function suburbChange(obj) {
+                document.getElementById("svg1").style.display = "none";
+                var a = document.getElementById("svg");
+                if (a) { document.getElementById("svg").style.display = "none"; }
+                
                 $('.marker').remove();
                 map.setLayoutProperty("state-fills", 'visibility', 'none');
                 map.setLayoutProperty("state-borders", 'visibility', 'none');
@@ -805,14 +933,46 @@
                     el.style.backgroundColor = "yellow";
                     el.style.width = marker.properties.iconSize[0] + 'px';
                     el.style.height = marker.properties.iconSize[1] + 'px';
+
                     el.addEventListener('click', function () {
-                        window.alert(marker.properties.message);
+                        if (document.getElementById("myPopup")) {
+                            var x = document.getElementsByClassName("popuptext");
+                
+                            var i;
+                            for (i = 0; i < x.length; i++) {
+                                x[i].parentNode.removeChild(x[i]);
+                      
+                            }
+                    
+                        }
+                        var span = document.createElement("span");
+                        span.setAttribute('class', "popuptext");
+                        span.style.width = "160px";
+                        span.id = "myPopup";
+                        el.appendChild(span);
+                        span.textContent = marker.properties.message;
+                        var popup = document.getElementById("myPopup");
+                        popup.classList.toggle("show");
                     });
                     // add marker to map
                     new mapboxgl.Marker(el)
                         .setLngLat(marker.geometry.coordinates)
                         .addTo(map);
                 });
+                document.addEventListener("click", clickHidden);
+
+                function clickHidden(eve) {
+                    if (eve.target.className != "marker mapboxgl-marker mapboxgl-marker-anchor-center" && document.getElementById("myPopup")) {
+                        var x = document.getElementsByClassName("popuptext");
+       
+                        var i;
+                        for (i = 0; i < x.length; i++) {
+                                x[i].parentNode.removeChild(x[i]);
+  
+                        }
+
+                    }
+                }
             }
         </script>
     </body >
