@@ -4,7 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 <!DOCTYPE html>
 <html>
 <head>
@@ -220,7 +219,7 @@
                         Select Age Group<br /><select id="selectAgeL" onchange="suburbChange(this)"></select><br />
                         <form>
                         <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
-                            <input id="clickMe" type="button" value="clickme" onclick="clear();" />
+                            <input id="clickMe" type="button" value="Clear" onclick="clear();" />
                         </form>
      
                     </div>
@@ -234,7 +233,7 @@
                             Select Age Group<br /><select id="selectAgeC" onchange="suburbChange(this)"></select><br />
                             <form>
                             <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
-                                <input id="clickMe" type="button" value="clickme" onclick="clear();" />
+                                <input id="clickMe" type="button" value="Clear" onclick="clear();" />
                             </form>
                             <!--<div style="height:100px"><input id="clickMe" type="button" value="clickme" onclick="clear();" /></div>-->
                         </div>
@@ -310,6 +309,7 @@
             function country() {
                 d3.select("#svg").remove();
                 d3.select("#svg1").remove();
+                d3.select("#svg2").remove();
                 map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/streets-v11',
@@ -457,6 +457,7 @@
             function language() {
                 d3.select("#svg").remove();
                 d3.select("#svg1").remove();
+                d3.select("#svg2").remove();
                 map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/streets-v11',
@@ -811,6 +812,7 @@
             }
 
             function countryChange(obj) {
+                d3.select("#svg2").remove();
                 document.getElementById("svg1").style.display = "block";
                 var a = document.getElementById("svg");
                 if (a) { document.getElementById("svg").style.display = "block"; }
@@ -832,6 +834,7 @@
                 loadSuburb();
             }
             function languageChange(obj) {
+                d3.select("#svg2").remove();
                 document.getElementById("svg1").style.display = "block";
                 var a = document.getElementById("svg");
                 if (a) { document.getElementById("svg").style.display = "block"; }
@@ -907,85 +910,6 @@
             }
             function suburbChange(obj) {
                 d3.select("#svg2").remove();
-                svg2 = d3.select("body").append("svg")
-                    .attr("id", "svg2")
-                    .attr("style", "height:100px")
-                    .attr("transform", "translate(" + 10 + "," + 10 + ")");
-                legendArea = svg2.append("g")
-                    .attr("transform", "translate(0,20)");
-
-                var l = [{ "tp": "Kindergarten", "color": "purple", "sp": "rect"}]
-                var l2 = [{ "tp": "G", "color": "white", "sp": "rect" },{ "tp": "Government", "color": "yellow", "sp": "rect" },{ "tp": "Independent", "color": "blue", "sp": "rect" }, { "tp": "Catholic", "color": "red", "sp": "rect" }, { "tp": "LanguageSchool", "color": "green", "sp": "rect" }]
-                var legend = legendArea.selectAll("g")
-                    .data(l)
-                    .enter()
-                    .append("g")
-                    .attr("transform", function (d, i) {
-                        return "translate(" + 10 + "," + 10 * i + ")";
-                    });
-
-                legend.append("rect")
-                    .attr("width", 8)
-                    .attr("height", 8)
-                    .style("fill", function (d, i) {
-                        return d['color']
-                    });
-
-                legend.append("text")
-                    .attr("x", 24)
-                    .attr("y", 9)
-                    .style("fill", function (d, i) {
-                        return d['color']
-                    })
-                    .attr("dy", ".05em")
-                    .attr("font-size", "10px")
-                    .text(function (d, i) {
-                        return d['tp'];
-                    });
-
-                var legend2 = legendArea.selectAll("g")
-                    .data(l2)
-                    .enter()
-                    .append("g")
-                    .attr("transform", function (d, i) {
-                        return "translate(" + 10 + "," + 10 * i + ")";
-                    });
-
-                legend2.append("circle")
-                    .attr("r", 4)
-                    .attr("cx",4)
-                    .attr("cy",8)
-                    .style("fill", function (d, i) {
-                        return d['color']
-                    });
-
-                legend2.append("text")
-                    .attr("x", 24)
-                    .attr("y", 9)
-                    .style("fill", function (d, i) {
-                        return d['color']
-                    })
-                    .attr("dy", ".05em")
-                    .attr("font-size", "10px")
-                    .text(function (d, i) {
-                        return d['tp'];
-                    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 if (obj.id == "selectSuburbC") { exe(obj); }
                 if (obj.id == "selectSchoolTypeC") {
                     if (selectSuburbC.options[selectSuburbC.selectedIndex].value != 0) { exe(obj); }
@@ -1001,6 +925,80 @@
                     if (selectSuburbL.options[selectSuburbL.selectedIndex].value != 0) { exe(obj); }
                 }
                 function exe(obj) {
+
+                    svg2 = d3.select("body").append("svg")
+                        .attr("id", "svg2")
+                        .attr("style", "height:100px")
+                        .attr("transform", "translate(" + 10 + "," + 10 + ")");
+                    legendArea = svg2.append("g")
+                        .attr("transform", "translate(0,20)");
+
+                    var l = [{ "tp": "Kindergarten", "color": "purple", "sp": "rect" }]
+                    var l2 = [{ "tp": "G", "color": "white", "sp": "rect" }, { "tp": "Government", "color": "yellow", "sp": "rect" }, { "tp": "Independent", "color": "blue", "sp": "rect" }, { "tp": "Catholic", "color": "red", "sp": "rect" }, { "tp": "LanguageSchool", "color": "green", "sp": "rect" }]
+                    var legend = legendArea.selectAll("g")
+                        .data(l)
+                        .enter()
+                        .append("g")
+                        .attr("transform", function (d, i) {
+                            return "translate(" + 10 + "," + 10 * i + ")";
+                        });
+
+                    legend.append("rect")
+                        .attr("width", 8)
+                        .attr("height", 8)
+                        .style("fill", function (d, i) {
+                            return d['color']
+                        });
+
+                    legend.append("text")
+                        .attr("x", 24)
+                        .attr("y", 9)
+                        .style("fill", function (d, i) {
+                            return d['color']
+                        })
+                        .attr("dy", ".05em")
+                        .attr("font-size", "10px")
+                        .text(function (d, i) {
+                            return d['tp'];
+                        });
+
+                    var legend2 = legendArea.selectAll("g")
+                        .data(l2)
+                        .enter()
+                        .append("g")
+                        .attr("transform", function (d, i) {
+                            return "translate(" + 10 + "," + 10 * i + ")";
+                        });
+
+                    legend2.append("circle")
+                        .attr("r", 4)
+                        .attr("cx", 4)
+                        .attr("cy", 8)
+                        .style("fill", function (d, i) {
+                            return d['color']
+                        });
+
+                    legend2.append("text")
+                        .attr("x", 24)
+                        .attr("y", 9)
+                        .style("fill", function (d, i) {
+                            return d['color']
+                        })
+                        .attr("dy", ".05em")
+                        .attr("font-size", "10px")
+                        .text(function (d, i) {
+                            return d['tp'];
+                        });
+
+
+
+
+
+
+
+
+
+
                     var schoolTypeSelected = "";
                     var ageSelected = "";
                     if (countryFunction) {
