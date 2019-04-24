@@ -59,6 +59,15 @@
             left: 25%;
             top: 100px;
         }
+        #svg2 {
+            width: 120px;
+            border-style: solid;
+            border-color: darkgray;
+            border-width: 2px;
+            background-color: white;
+            left: 25%;
+            top: 100px;
+        }
 
         .axis {
             font: 10px sans-serif;
@@ -104,12 +113,12 @@
         }
         /* input隐藏 */
 
-        input {
+        .aa {
             display: none;
         }
             /* 设置input的下一个节点label的样式 */
 
-            input + label {
+            .aa + label {
                 display: block;
                 width: 100%;
                 height: 100%;
@@ -121,7 +130,7 @@
             }
                 /* 设置div内容的基础样式 隐藏内容div*/
 
-                input + label + div {
+                .aa + label + div {
                     display: none;
                     position: absolute;
                     left: 0;
@@ -129,23 +138,24 @@
                 }
             /* input选中状态时候对应的label的样式 */
 
-            input:checked + label {
+            .aa:checked + label {
                 background: #333333;
                 color: #fff;
             }
                 /* input选中时候显示对应的div */
 
-                input:checked + label + div {
+                .aa:checked + label + div {
                     display: block;
                 }
 
         .marker {
             display: block;
             border: none;
-            border-radius: 50%;
+            /*border-radius: 2%;*/
             cursor: pointer;
             padding: 0;
         }
+
         .popup {
             position: relative;
             display: inline-block;
@@ -157,80 +167,93 @@
         }
 
             /* The actual popup */
-        .popup .popuptext {
-            visibility: hidden;
-            width: 260px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 8px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -80px;
-        }
+            .popup .popuptext {
+                visibility: hidden;
+                width: 260px;
+                background-color: #555;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 8px 0;
+                position: absolute;
+                z-index: 1;
+                bottom: 125%;
+                left: 50%;
+                margin-left: -80px;
+            }
 
-        /* Popup arrow */
-        .popup .popuptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #555 transparent transparent transparent;
-        }
+                /* Popup arrow */
+                .popup .popuptext::after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: #555 transparent transparent transparent;
+                }
 
-        /* Toggle this class - hide and show the popup */
-        .popup .show {
-            visibility: visible;
-            -webkit-animation: fadeIn 1s;
-            animation: fadeIn 1s;
-        }
+            /* Toggle this class - hide and show the popup */
+            .popup .show {
+                visibility: visible;
+                -webkit-animation: fadeIn 1s;
+                animation: fadeIn 1s;
+            }
     </style>
+ 
 </head>
-    <body>
-        <div id="wholeContiner">
-            <div class="col-lg-2 box" id="filter">
-                    <ul>
-                        <li>
-                            <input type="radio" name="check" id="active1" value="information" checked><label for="active1">information</label>
-                            <div id="information">information</div>
-                        </li>
-                        <li>
-                            <input type="radio" name="check" id="active2" value="language"><label for="active2">Language</label>
-                            <div id="languageFilter">
-                                Which Country Are You Looking For<br /><select id="selectLanguage" onchange="languageChange(this)"></select><br />
-                                Which Suburb Are You Looking For<br /><select id="selectSuburbL" onchange="suburbChange(this)"></select><br />
-                                <button id="clearButton">Clear</button>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="radio" name="check" id="active3" value="country"><label for="active3">Country</label>
-                            <div id="countryFilter">
-                                Which Country Are You Looking For<br/><select id="selectCountry" onchange="countryChange(this)"></select><br/>
-                                Which Suburb Are You Looking For<br/><select id="selectSuburbC" onchange="suburbChange(this)"></select><br/>
-                                <button id="clearButton">Clear</button>
-                            </div>
-                        </li>
-                    </ul>
-            </div>
-            <div class = "col-lg-10" id='map'></div>
+<body>
+    <div id="wholeContiner">
+        <div class="col-lg-2 box" id="filter">
+            <ul>
+                <li>
+                    <input class="aa" type="radio" name="check" id="active1" value="information" checked><label for="active1">information</label>
+                    <div id="information">information</div>
+                </li>
+                <li>
+                    <input class="aa" type="radio" name="check" id="active2" value="language"><label for="active2">Language</label>
+                    <div id="languageFilter">
+                        Which Country Are You Looking For<br /><select id="selectLanguage" onchange="languageChange(this)"></select><br />
+                        Which Suburb Are You Looking For<br /><select id="selectSuburbL" onchange="suburbChange(this)"></select><br />
+                        Select School Type<br /><select id="selectSchoolTypeL" onchange="suburbChange(this)"></select><br />
+                        Select Age Group<br /><select id="selectAgeL" onchange="suburbChange(this)"></select><br />
+                        <form>
+                        <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
+                            <input id="clickMe" type="button" value="clickme" onclick="clear();" />
+                        </form>
+     
+                    </div>
+                </li>
+                <li>
+                        <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3">Country</label>
+                        <div id="countryFilter">
+                            Which Country Are You Looking For<br /><select id="selectCountry" onchange="countryChange(this)"></select><br />
+                            Which Suburb Are You Looking For<br /><select id="selectSuburbC" onchange="suburbChange(this)"></select><br />
+                            Select School Type<br /><select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
+                            Select Age Group<br /><select id="selectAgeC" onchange="suburbChange(this)"></select><br />
+                            <form>
+                            <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
+                                <input id="clickMe" type="button" value="clickme" onclick="clear();" />
+                            </form>
+                            <!--<div style="height:100px"><input id="clickMe" type="button" value="clickme" onclick="clear();" /></div>-->
+                        </div>
+                    </li>
+            </ul>
         </div>
+        <div class="col-lg-10" id='map'></div>
+    </div>
         <script>
             var countryFunction = false;
             var languageFunction = false;
 
             $(function () {
                 $(":radio").click(function () {
-                    if ($(this).val() == "information") { alert("您是..." + $(this).val());}
+                    if ($(this).val() == "information") { alert("您是..." + $(this).val()); }
                     if ($(this).val() == "country") {
                         countryFunction = true;
-                        if (document.getElementById("selectCountry").options[0])
-                        { document.getElementById("selectCountry").options[0].selected = true; }
+                        languageFunction = false;
+                        if (document.getElementById("selectCountry").options[0]) { document.getElementById("selectCountry").options[0].selected = true; }
                         //
                         loadSuburb();
                         document.getElementById("selectSuburbC").options[0].selected = true;
@@ -238,8 +261,8 @@
                     }
                     if ($(this).val() == "language") {
                         languageFunction = true;
-                        if (document.getElementById("selectLanguage").options[0])
-                        { document.getElementById("selectLanguage").options[0].selected = true; }
+                        countryFunction = false;
+                        if (document.getElementById("selectLanguage").options[0]) { document.getElementById("selectLanguage").options[0].selected = true; }
                         loadSuburb();
                         document.getElementById("selectSuburbL").options[0].selected = true;
                         language();
@@ -415,7 +438,7 @@
                                 barchartForCountry(e);
                             }
                         })
-                        });
+                    });
                     // When the mouse leaves the state-fill layer, update the feature state of the
                     // previously hovered feature.
                     map.on("mouseleave", "state-fills", function () {
@@ -771,10 +794,14 @@
             var selectLanguage = document.getElementById("selectLanguage");
             var selectSuburbL = document.getElementById("selectSuburbL");
             var selectSuburbC = document.getElementById("selectSuburbC");
+            var selectSchoolTypeC = document.getElementById("selectSchoolTypeC");
+            var selectSchoolTypeL = document.getElementById("selectSchoolTypeL");
+            var selectAgeL = document.getElementById("selectAgeL");
+            var selectAgeC = document.getElementById("selectAgeC");
             var countrySelected = 0;
             var languageSelected = 0;
             var suburbs = [];
-            selectCountry.options.add(new Option("select country",0))
+            selectCountry.options.add(new Option("select country", 0))
             for (var i = 0; i < countryColor.length; i++) {
                 selectCountry.options.add(new Option(countryColor[i]["country"], countryColor[i]["id"]));
             }
@@ -783,8 +810,7 @@
                 selectLanguage.options.add(new Option(languageColor[i]["language"], languageColor[i]["id"]));
             }
 
-            function countryChange(obj)
-            {
+            function countryChange(obj) {
                 document.getElementById("svg1").style.display = "block";
                 var a = document.getElementById("svg");
                 if (a) { document.getElementById("svg").style.display = "block"; }
@@ -800,7 +826,7 @@
                 if (m != 0) {
                     map.setPaintProperty("state-fills", 'fill-color', {
                         "property": "main_country_id",
-                            "stops": [[m - 1, 'white'], [m, 'gray'], [m + 1, 'white']]
+                        "stops": [[m - 1, 'white'], [m, 'gray'], [m + 1, 'white']]
                     });
                 }
                 loadSuburb();
@@ -828,8 +854,27 @@
             }
             loadSuburb();
             function loadSuburb() {
-                if (countryFunction)
-                {
+                selectSchoolTypeC.options.length = 0;
+                selectSchoolTypeC.options.add(new Option("All school type", "none"));
+                selectSchoolTypeC.options.add(new Option("Government", "Government"));
+                selectSchoolTypeC.options.add(new Option("Independent", "Independent"));
+                selectSchoolTypeC.options.add(new Option("Catholic", "Catholic"));
+                selectSchoolTypeC.options.add(new Option("LanguageSchool", "LanguageSchool"));
+                selectSchoolTypeL.options.length = 0;
+                selectSchoolTypeL.options.add(new Option("All school type", "none"));
+                selectSchoolTypeL.options.add(new Option("Government", "Government"));
+                selectSchoolTypeL.options.add(new Option("Independent", "Independent"));
+                selectSchoolTypeL.options.add(new Option("Catholic", "Catholic"));
+                selectSchoolTypeL.options.add(new Option("LanguageSchool", "LanguageSchool"));
+                selectAgeL.options.length = 0;
+                selectAgeL.options.add(new Option("All Age Group", "none"));
+                selectAgeL.options.add(new Option("3-6 Years", "3-6 Years"));
+                selectAgeL.options.add(new Option("7-12 Years", "7-12 Years"));
+                selectAgeC.options.length = 0;
+                selectAgeC.options.add(new Option("All Age Group", "none"));
+                selectAgeC.options.add(new Option("3-6 Years", "3-6 Years"));
+                selectAgeC.options.add(new Option("7-12 Years", "7-12 Years"));
+                if (countryFunction) {
                     selectSuburbC.options.length = 0;
                     suburbs = [];
                     for (var i = 0; i < boundaries["features"].length; i++) {
@@ -844,8 +889,7 @@
                         selectSuburbC.options.add(new Option(suburbs[i]["properties"]["vic_loca_2"].toLowerCase(), suburbs[i]["properties"]["vic_loca_2"].toUpperCase()));
                     }
                 }
-                if (languageFunction)
-                {
+                if (languageFunction) {
                     selectSuburbL.options.length = 0;
                     suburbs = [];
                     for (var i = 0; i < boundaries["features"].length; i++) {
@@ -862,118 +906,376 @@
 
             }
             function suburbChange(obj) {
-                document.getElementById("svg1").style.display = "none";
-                var a = document.getElementById("svg");
-                if (a) { document.getElementById("svg").style.display = "none"; }
-                
-                $('.marker').remove();
-                map.setLayoutProperty("state-fills", 'visibility', 'none');
-                map.setLayoutProperty("state-borders", 'visibility', 'none');
-                var lat = 0;
-                var lon = 0;
-                $.ajax({
-                    url: "/Education/GetJsonSuburb",
-                    type: "GET",//请求方式为get
-                    dataType: "json", //返回数据格式为json
-                    data: { suburbName: obj.options[obj.selectedIndex].value },
-                    async: false,//是否同步
-                    success: function (data) {//请求成功完成后要执行的方法
-                        lat = parseFloat(data["Lat"]);
-                        lon = parseFloat(data["Lon"]);
-                    },
-                    error: function () {
-                        console.log("error");
-                    }
-                })
-                map.flyTo({
-                    center: [lon, lat],
-                    zoom: 13
-                });
+                d3.select("#svg2").remove();
+                svg2 = d3.select("body").append("svg")
+                    .attr("id", "svg2")
+                    .attr("style", "height:100px")
+                    .attr("transform", "translate(" + 10 + "," + 10 + ")");
+                legendArea = svg2.append("g")
+                    .attr("transform", "translate(0,20)");
 
-                var schools = [];
-                $.ajax({
-                    url: "/Education/GetJsonSchools",
-                    type: "GET",//请求方式为get
-                    dataType: "json", //返回数据格式为json
-                    data: { suburbName: obj.options[obj.selectedIndex].value },
-                    async: false,//是否同步
-                    success: function (data) {//请求成功完成后要执行的方法
-                        schools = data;
-                    },
-                    error: function () {
-                        console.log("error");
-                    }
-                })
-                console.log(schools);
-                var geojson = { "type": "FeatureCollection", "features": []};
-                for (i = 0; i < schools.length; i++) {
-                    var feature = {
-                        "type": "Feature",
-                        "properties": {
-                            "message": schools[i].School_Name.trim(),
-                            "iconSize": [15, 15]
-                        },
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [
-                                parseFloat(schools[i].Y.trim()),
-                                parseFloat(schools[i].X.trim())
-                            ]
-                        }
-                    };
-                    geojson["features"].push(feature);
+                var l = [{ "tp": "Kindergarten", "color": "purple", "sp": "rect"}]
+                var l2 = [{ "tp": "G", "color": "white", "sp": "rect" },{ "tp": "Government", "color": "yellow", "sp": "rect" },{ "tp": "Independent", "color": "blue", "sp": "rect" }, { "tp": "Catholic", "color": "red", "sp": "rect" }, { "tp": "LanguageSchool", "color": "green", "sp": "rect" }]
+                var legend = legendArea.selectAll("g")
+                    .data(l)
+                    .enter()
+                    .append("g")
+                    .attr("transform", function (d, i) {
+                        return "translate(" + 10 + "," + 10 * i + ")";
+                    });
+
+                legend.append("rect")
+                    .attr("width", 8)
+                    .attr("height", 8)
+                    .style("fill", function (d, i) {
+                        return d['color']
+                    });
+
+                legend.append("text")
+                    .attr("x", 24)
+                    .attr("y", 9)
+                    .style("fill", function (d, i) {
+                        return d['color']
+                    })
+                    .attr("dy", ".05em")
+                    .attr("font-size", "10px")
+                    .text(function (d, i) {
+                        return d['tp'];
+                    });
+
+                var legend2 = legendArea.selectAll("g")
+                    .data(l2)
+                    .enter()
+                    .append("g")
+                    .attr("transform", function (d, i) {
+                        return "translate(" + 10 + "," + 10 * i + ")";
+                    });
+
+                legend2.append("circle")
+                    .attr("r", 4)
+                    .attr("cx",4)
+                    .attr("cy",8)
+                    .style("fill", function (d, i) {
+                        return d['color']
+                    });
+
+                legend2.append("text")
+                    .attr("x", 24)
+                    .attr("y", 9)
+                    .style("fill", function (d, i) {
+                        return d['color']
+                    })
+                    .attr("dy", ".05em")
+                    .attr("font-size", "10px")
+                    .text(function (d, i) {
+                        return d['tp'];
+                    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                if (obj.id == "selectSuburbC") { exe(obj); }
+                if (obj.id == "selectSchoolTypeC") {
+                    if (selectSuburbC.options[selectSuburbC.selectedIndex].value != 0) { exe(obj); }
                 }
+                if (obj.id == "selectAgeC") {
+                    if (selectSuburbC.options[selectSuburbC.selectedIndex].value != 0) { exe(obj); }
+                }
+                if (obj.id == "selectSuburbL") { exe(obj); }
+                if (obj.id == "selectSchoolTypeL") {
+                    if (selectSuburbL.options[selectSuburbL.selectedIndex].value != 0) { exe(obj); }
+                }
+                if (obj.id == "selectAgeL") {
+                    if (selectSuburbL.options[selectSuburbL.selectedIndex].value != 0) { exe(obj); }
+                }
+                function exe(obj) {
+                    var schoolTypeSelected = "";
+                    var ageSelected = "";
+                    if (countryFunction) {
+                        schoolTypeSelected = selectSchoolTypeC.options[selectSchoolTypeC.selectedIndex].value;
+                        ageSelected = selectAgeC.options[selectAgeC.selectedIndex].value;
+                    }
+                    if (languageFunction) {
+                        schoolTypeSelected = selectSchoolTypeL.options[selectSchoolTypeL.selectedIndex].value;
+                        ageSelected = selectAgeL.options[selectAgeL.selectedIndex].value;
+                    }
+                    document.getElementById("svg1").style.display = "none";
+                    var a = document.getElementById("svg");
+                    if (a) { document.getElementById("svg").style.display = "none"; }
 
-                // add markers to map
-                geojson.features.forEach(function (marker) {
-                    // create a DOM element for the marker
-                    var el = document.createElement('div');
-                    el.className = 'marker';
-                    //el.style.backgroundImage = 'url(https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png)';
-                    el.style.backgroundColor = "yellow";
-                    el.style.width = marker.properties.iconSize[0] + 'px';
-                    el.style.height = marker.properties.iconSize[1] + 'px';
+                    $('.marker').remove();
+                    map.setLayoutProperty("state-fills", 'visibility', 'none');
+                    map.setLayoutProperty("state-borders", 'visibility', 'none');
+                    var lat = 0;
+                    var lon = 0;
+                    var suburbSelected = "";
+                    if (countryFunction) { suburbSelected = selectSuburbC.options[selectSuburbC.selectedIndex].value }
+                    if (languageFunction) { suburbSelected = selectSuburbL.options[selectSuburbL.selectedIndex].value }
+                    console.log(suburbSelected);
+                    $.ajax({
+                        url: "/Education/GetJsonSuburb",
+                        type: "GET",//请求方式为get
+                        dataType: "json", //返回数据格式为json
+                        data: { suburbName: suburbSelected },
+                        async: false,//是否同步
+                        success: function (data) {//请求成功完成后要执行的方法
+                            lat = parseFloat(data["Lat"]);
+                            lon = parseFloat(data["Lon"]);
+                        },
+                        error: function () {
+                            console.log("error");
+                        }
+                    })
+                    map.flyTo({
+                        center: [lon, lat],
+                        zoom: 13
+                    });
 
-                    el.addEventListener('click', function () {
-                        if (document.getElementById("myPopup")) {
+                    var schools = [];
+                    $.ajax({
+                        url: "/Education/GetJsonSchools",
+                        type: "GET",//请求方式为get
+                        dataType: "json", //返回数据格式为json
+                        data: { suburbName: suburbSelected },
+                        async: false,//是否同步
+                        success: function (data) {//请求成功完成后要执行的方法
+                            schools = data;
+                        },
+                        error: function () {
+                            console.log("error");
+                        }
+                    })
+                    //console.log(schools);
+                    var geojson = { "type": "FeatureCollection", "features": [] };
+                    if (schoolTypeSelected == "none" && ageSelected == "none") {
+                        for (i = 0; i < schools.length; i++) {
+                            var feature = {
+                                "type": "Feature",
+                                "properties": {
+                                    "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                    "iconSize": [15, 15],
+                                    "Education_Sector": schools[i].Education_Sector.trim(),
+                                    "School_Type": schools[i].School_Type.trim()
+                                },
+                                "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [
+                                        parseFloat(schools[i].Y.trim()),
+                                        parseFloat(schools[i].X.trim())
+                                    ]
+                                }
+                            };
+                            geojson["features"].push(feature);
+                        }
+                    }
+                    else if (schoolTypeSelected != "none" && ageSelected == "none") {
+                        for (i = 0; i < schools.length; i++) {
+                            if (schools[i].Education_Sector.trim() == schoolTypeSelected || schools[i].School_Type.trim() == "Kindergarten") {
+                                var feature = {
+                                    "type": "Feature",
+                                    "properties": {
+                                        "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                        "iconSize": [15, 15],
+                                        "Education_Sector": schools[i].Education_Sector.trim(),
+                                        "School_Type": schools[i].School_Type.trim()
+                                    },
+                                    "geometry": {
+                                        "type": "Point",
+                                        "coordinates": [
+                                            parseFloat(schools[i].Y.trim()),
+                                            parseFloat(schools[i].X.trim())
+                                        ]
+                                    }
+                                };
+                                geojson["features"].push(feature);
+                            }
+                        }
+                    }
+                    else if (schoolTypeSelected == "none" && ageSelected != "none") {
+                        for (i = 0; i < schools.length; i++) {
+                            if (schools[i].School_Type.trim() == "Kindergarten" && ageSelected == "3-6 Years") {
+                                var feature = {
+                                    "type": "Feature",
+                                    "properties": {
+                                        "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                        "iconSize": [15, 15],
+                                        "Education_Sector": schools[i].Education_Sector.trim(),
+                                        "School_Type": schools[i].School_Type.trim()
+                                    },
+                                    "geometry": {
+                                        "type": "Point",
+                                        "coordinates": [
+                                            parseFloat(schools[i].Y.trim()),
+                                            parseFloat(schools[i].X.trim())
+                                        ]
+                                    }
+                                };
+                                geojson["features"].push(feature);
+                            }
+                            if (schools[i].School_Type.trim() != "Kindergarten" && ageSelected == "7-12 Years") {
+                                var feature = {
+                                    "type": "Feature",
+                                    "properties": {
+                                        "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                        "iconSize": [15, 15],
+                                        "Education_Sector": schools[i].Education_Sector.trim(),
+                                        "School_Type": schools[i].School_Type.trim()
+                                    },
+                                    "geometry": {
+                                        "type": "Point",
+                                        "coordinates": [
+                                            parseFloat(schools[i].Y.trim()),
+                                            parseFloat(schools[i].X.trim())
+                                        ]
+                                    }
+                                };
+                                geojson["features"].push(feature);
+                            }
+                        }
+                    }
+                    else {
+                        if (ageSelected == "7-12 Years") {
+                            for (i = 0; i < schools.length; i++) {
+                                if (schools[i].Education_Sector.trim() == schoolTypeSelected && schools[i].School_Type.trim() != "Kindergarten") {
+                                    var feature = {
+                                        "type": "Feature",
+                                        "properties": {
+                                            "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                            "iconSize": [15, 15],
+                                            "Education_Sector": schools[i].Education_Sector.trim(),
+                                            "School_Type": schools[i].School_Type.trim()
+                                        },
+                                        "geometry": {
+                                            "type": "Point",
+                                            "coordinates": [
+                                                parseFloat(schools[i].Y.trim()),
+                                                parseFloat(schools[i].X.trim())
+                                            ]
+                                        }
+                                    };
+                                    geojson["features"].push(feature);
+                                }
+                            }
+                        }
+                        if (ageSelected == "3-6 Years") {
+                            for (i = 0; i < schools.length; i++) {
+                                if (schools[i].Education_Sector.trim() == "unknown" && schools[i].School_Type.trim() == "Kindergarten") {
+                                    var feature = {
+                                        "type": "Feature",
+                                        "properties": {
+                                            "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                            "iconSize": [15, 15],
+                                            "Education_Sector": schools[i].Education_Sector.trim(),
+                                            "School_Type": schools[i].School_Type.trim()
+                                        },
+                                        "geometry": {
+                                            "type": "Point",
+                                            "coordinates": [
+                                                parseFloat(schools[i].Y.trim()),
+                                                parseFloat(schools[i].X.trim())
+                                            ]
+                                        }
+                                    };
+                                    geojson["features"].push(feature);
+                                }
+                            }
+                        }
+
+                    }
+                    console.log(geojson["features"]);
+                    // add markers to map
+                    geojson.features.forEach(function (marker) {
+                        // create a DOM element for the marker
+                        var el = document.createElement('div');
+                        el.className = 'marker';
+                        //el.style.backgroundImage = 'url(https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png)';
+                        var markerColor = "yellow";
+                        if (marker.properties.Education_Sector == "Government") { markerColor = "yellow"; }
+                        else if (marker.properties.Education_Sector == "Independent") { markerColor = "blue"; }
+                        else if (marker.properties.Education_Sector == "Catholic") { markerColor = "red"; }
+                        else if (marker.properties.Education_Sector == "LanguageSchool") { markerColor = "green"; }
+                        else { markerColor = "purple"; }
+                        el.style.backgroundColor = markerColor;
+                        el.style.width = marker.properties.iconSize[0] + 'px';
+                        el.style.height = marker.properties.iconSize[1] + 'px';
+                        var radius = "50%"
+                        if (marker.properties.School_Type == "Kindergarten") { radius = "5%"; }
+                        el.style.borderRadius = radius;
+                        el.addEventListener('click', function () {
+                            if (document.getElementById("myPopup")) {
+                                var x = document.getElementsByClassName("popuptext");
+
+                                var i;
+                                for (i = 0; i < x.length; i++) {
+                                    x[i].parentNode.removeChild(x[i]);
+
+                                }
+
+                            }
+                            var span = document.createElement("span");
+                            span.setAttribute('class', "popuptext");
+                            span.style.width = "160px";
+                            span.style.whiteSpace = "pre-wrap";
+                            span.id = "myPopup";
+                            el.appendChild(span);
+                            span.textContent = marker.properties.message;
+                            var popup = document.getElementById("myPopup");
+                            popup.classList.toggle("show");
+                        });
+                        // add marker to map
+                        new mapboxgl.Marker(el)
+                            .setLngLat(marker.geometry.coordinates)
+                            .addTo(map);
+                    });
+                    document.addEventListener("click", clickHidden);
+
+                    function clickHidden(eve) {
+                        if (eve.target.className != "marker mapboxgl-marker mapboxgl-marker-anchor-center" && document.getElementById("myPopup")) {
                             var x = document.getElementsByClassName("popuptext");
-                
+
                             var i;
                             for (i = 0; i < x.length; i++) {
                                 x[i].parentNode.removeChild(x[i]);
-                      
+
                             }
-                    
-                        }
-                        var span = document.createElement("span");
-                        span.setAttribute('class', "popuptext");
-                        span.style.width = "160px";
-                        span.id = "myPopup";
-                        el.appendChild(span);
-                        span.textContent = marker.properties.message;
-                        var popup = document.getElementById("myPopup");
-                        popup.classList.toggle("show");
-                    });
-                    // add marker to map
-                    new mapboxgl.Marker(el)
-                        .setLngLat(marker.geometry.coordinates)
-                        .addTo(map);
-                });
-                document.addEventListener("click", clickHidden);
 
-                function clickHidden(eve) {
-                    if (eve.target.className != "marker mapboxgl-marker mapboxgl-marker-anchor-center" && document.getElementById("myPopup")) {
-                        var x = document.getElementsByClassName("popuptext");
-       
-                        var i;
-                        for (i = 0; i < x.length; i++) {
-                                x[i].parentNode.removeChild(x[i]);
-  
                         }
-
                     }
                 }
             }
         </script>
-    </body >
-    </html >
+        <script type="text/javascript">
+
+            $(function () {
+                $("#clickMe").click(function () {
+                    console.log("aaa");
+                    if (countryFunction) {
+                        if (document.getElementById("selectCountry").options[0]) { document.getElementById("selectCountry").options[0].selected = true; }
+                        //
+                        loadSuburb();
+                        document.getElementById("selectSuburbC").options[0].selected = true;
+                        country();
+                    }
+                    if (languageFunction) {
+                        if (document.getElementById("selectLanguage").options[0]) { document.getElementById("selectLanguage").options[0].selected = true; }
+                        loadSuburb();
+                        document.getElementById("selectSuburbL").options[0].selected = true;
+                        language();
+                    }
+                });
+            });
+        </script>
+    </body>
+        </html >
