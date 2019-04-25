@@ -219,25 +219,25 @@
                         Select Age Group<br /><select id="selectAgeL" onchange="suburbChange(this)"></select><br />
                         <form>
                         <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
-                            <input id="clickMe" type="button" value="Clear" onclick="clear();" />
+                            <input class="clickMe" type="button" value="Clear" onclick="clear();" />
                         </form>
      
                     </div>
                 </li>
                 <li>
-                        <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3">Country</label>
-                        <div id="countryFilter">
-                            Which Country Are You Looking For<br /><select id="selectCountry" onchange="countryChange(this)"></select><br />
-                            Which Suburb Are You Looking For<br /><select id="selectSuburbC" onchange="suburbChange(this)"></select><br />
-                            Select School Type<br /><select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
-                            Select Age Group<br /><select id="selectAgeC" onchange="suburbChange(this)"></select><br />
-                            <form>
-                            <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
-                                <input id="clickMe" type="button" value="Clear" onclick="clear();" />
-                            </form>
-                            <!--<div style="height:100px"><input id="clickMe" type="button" value="clickme" onclick="clear();" /></div>-->
-                        </div>
-                    </li>
+                    <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3">Country</label>
+                    <div id="countryFilter">
+                        Which Country Are You Looking For<br /><select id="selectCountry" onchange="countryChange(this)"></select><br />
+                        Which Suburb Are You Looking For<br /><select id="selectSuburbC" onchange="suburbChange(this)"></select><br />
+                        Select School Type<br /><select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
+                        Select Age Group<br /><select id="selectAgeC" onchange="suburbChange(this)"></select><br />
+                        <form>
+                        <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
+                            <input class="clickMe" type="button" value="Clear" onclick="clear();" />
+                        </form>
+                        <!--<div style="height:100px"><input id="clickMe" type="button" value="clickme" onclick="clear();" /></div>-->
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="col-lg-10" id='map'></div>
@@ -245,7 +245,7 @@
         <script>
             var countryFunction = false;
             var languageFunction = false;
-
+            var suburbSelected = "";
             $(function () {
                 $(":radio").click(function () {
                     if ($(this).val() == "information") { alert("您是..." + $(this).val()); }
@@ -450,7 +450,8 @@
                     });
 
                     map.on("click", "state-fills", function (thisElement) {
-
+                        suburbSelected = thisElement.features[0].properties.vic_loca_2;
+                        suburbChange({ "id": "selectSuburbC","clickState":"clicked" });
                     });
                 });
             }
@@ -613,7 +614,8 @@
                     });
 
                     map.on("click", "state-fills", function (thisElement) {
-
+                        suburbSelected = thisElement.features[0].properties.vic_loca_2;
+                        suburbChange({ "id": "selectSuburbC", "clickState": "clicked" });
                     });
                 });
             }
@@ -910,6 +912,9 @@
             }
             function suburbChange(obj) {
                 d3.select("#svg2").remove();
+                var clicked = "";
+                if (obj.clickState) { clicked = "clicked";}
+
                 if (obj.id == "selectSuburbC") { exe(obj); }
                 if (obj.id == "selectSchoolTypeC") {
                     if (selectSuburbC.options[selectSuburbC.selectedIndex].value != 0) { exe(obj); }
@@ -1018,9 +1023,12 @@
                     map.setLayoutProperty("state-borders", 'visibility', 'none');
                     var lat = 0;
                     var lon = 0;
-                    var suburbSelected = "";
-                    if (countryFunction) { suburbSelected = selectSuburbC.options[selectSuburbC.selectedIndex].value }
-                    if (languageFunction) { suburbSelected = selectSuburbL.options[selectSuburbL.selectedIndex].value }
+                    
+                    if (countryFunction) {
+                        if (clicked == "clicked") { } else { suburbSelected = selectSuburbC.options[selectSuburbC.selectedIndex].value }
+                    }
+                    if (languageFunction) {
+                        if (clicked == "clicked") { } else { suburbSelected = selectSuburbL.options[selectSuburbL.selectedIndex].value } }
                     console.log(suburbSelected);
                     $.ajax({
                         url: "/Education/GetJsonSuburb",
@@ -1257,8 +1265,7 @@
         <script type="text/javascript">
 
             $(function () {
-                $("#clickMe").click(function () {
-                    console.log("aaa");
+                $(".clickMe").click(function () {
                     if (countryFunction) {
                         if (document.getElementById("selectCountry").options[0]) { document.getElementById("selectCountry").options[0].selected = true; }
                         //
