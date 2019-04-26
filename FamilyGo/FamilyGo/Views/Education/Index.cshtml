@@ -138,7 +138,7 @@
             /* input选中状态时候对应的label的样式 */
 
             .aa:checked + label {
-                background: #333333;
+                background: #66cdaa;
                 color: #fff;
             }
                 /* input选中时候显示对应的div */
@@ -217,27 +217,67 @@
         <div class="col-lg-2 box" id="filter">
             <ul role="tabpanel">
                 <li role="presentation">
-                    <input class="aa" type="radio" name="check" id="active1" value="information" checked><label for="active1" style="border:solid;border-radius:15px" role="tab">information</label>
-                    <div id="information">information</div>
+                    <input class="aa" type="radio" name="check" id="active1" value="information" checked><label for="active1" style="border:solid;border-radius:15px" role="tab">Information</label>
+                    <div id="information">
+                        <div>
+                            <p>There are threre main kind of schools in Australia.</p>
+                        </div>
+                        <div class="address-agileinfo">
+                            
+                            <p><span class="glyphicon glyphicon-info-sign"></span>Public School</p>                               
+                            <p>Benefits:</p>
+                            <p>1.Close to your home</p>
+                            <p>2.Reduce cost</p>
+                            <p>3.Broader subject choices</p>
+                            <p>Challenges:</p>
+                            <p>1.If there are social problems in your area, they may filter into school.</p>
+                            <p>2.Quality of staff</p>
+                        </div>
+
+                        <div class="address-agileinfo">
+                            
+                            <p><span class="glyphicon glyphicon-info-sign"></span>Cathoic School</p>                            
+                            <p>Benefits:</p>
+                            <p>1.Many Catholic schools encourage families to contribute to the Church’s social justice programs.</p>
+                            <p>2.The spiritual values of Faith, Hope and Charity all strongly feature in daily Catholic school activities.</p>
+                            <p>3.Catholic schools proudly note many staff have made it their mission to serve a school for the long term. </p>
+                            <p>Challenges:</p>
+                            <p>1.Strict participation after school or on weekends.</p>
+                            <p>2.Your child may need to be prepared for strict but fair rules; learning to sit still in Mass and adopting slightly formal manners at a young age</p>
+                        </div>
+
+                        <div class="address-agileinfo">
+                            
+                            <p><span class="glyphicon glyphicon-info-sign"></span>Private School</p>    
+                            <p>Benefits:</p>
+                            <p>1.Private schools proudly promote their wide range of creative, sporting, community and adventuring activities, marketed as extending your child’s abilities, resilience and competitive drive.</p>
+                            <p>2.Every private school has a building fund to maintain impressive architecture, lawns and extracurricular facilities</p>
+                            <p>3.Parents and former students frequently make financial contributions to the school. </p>
+                            <p>Challenges:</p>
+                            <p>1.Higher tuition fees, extra activities, more expensive uniforms, text books, stationery with the school crest </p>
+                            <p>2.A bigger homework load than their public school peers</p>
+                        </div>
+                    
+                    </div>
                 </li>
                 <li role="presentation">
                     <input class="aa" type="radio" name="check" id="active2" value="language"><label for="active2" role="tab" style="border:solid;border-radius:15px">Language</label>
-                    <div id="languageFilter" style="padding-top:0.5em">
+                    <div id="languageFilter" style="padding:2.5em" class="address-agileinfo">
                         <div style="margin-top:0.5em">
-                            Which Country Are You Looking For<br />
+                            Select a Language:<br />
                             <select id="selectLanguage" onchange="languageChange(this)"></select><br />
                         </div>
                         <div style="margin-top:0.5em">
-                            Which Suburb Are You Looking For<br />
+                            Select a Suburb:<br />
                             <select id="selectSuburbL" onchange="suburbChange(this)"></select><br />
                         </div>
                         <div style="margin-top:0.5em">
-                            Select School Type<br />
+                            Select School Type:<br />
                             <select id="selectSchoolTypeL" onchange="suburbChange(this)"></select><br />
                         </div>
                         <div style="margin-top:0.5em">
 
-                            Select Age Group<br />
+                            Select Age Group:<br />
                             <select id="selectAgeL" onchange="suburbChange(this)"></select><br />
                         </div>
                         <div style="margin-top:0.5em">
@@ -252,22 +292,22 @@
                 </li>
                 <li role="presentation">
                     <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3" style="border:solid;border-radius:15px" role="tab">Country</label>
-                    <div id="countryFilter" style="padding-top:0.5em">
+                    <div id="countryFilter" style="padding:3em" class="address-agileinfo">
                         <div style="margin-top:0.5em">
-                            Which Country Are You Looking For<br />
+                            Select a Country<br />
                             <select id="selectCountry" onchange="countryChange(this)"></select><br />
                         </div>
                         <div style="margin-top:0.5em">
-                            Which Suburb Are You Looking For<br />
+                            Select a Suburb:<br />
                             <select id="selectSuburbC" onchange="suburbChange(this)"></select><br />
 
                         </div>
                         <div style="margin-top:0.5em">
-                            Select School Type<br />
+                            Select School Type:<br />
                             <select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
                         </div>
                         <div style="margin-top:0.5em">
-                            Select Age Group<br />
+                            Select Age Group:<br />
                             <select id="selectAgeC" onchange="suburbChange(this)"></select><br />
                         </div>
                         <div style="margin-top:0.5em">
