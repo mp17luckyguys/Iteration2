@@ -10,191 +10,208 @@
 }
 
 
+
 <div class="container">
-<div class=" about-heading ">
-    <h5>
-        <a href="@Url.Action("Index","Home")">Home / &nbsp;</a>
-        <a href="@Url.Action("Index","Activities")">Activities / </a>
-        <a href="@Url.Action("Index","Places",new { i = ViewBag.activityName})">Activity Places</a>
-    </h5>
-</div>
+    <div class=" about-heading ">
+        <h5>
+            <a href="@Url.Action("Index","Home")">Home / &nbsp;</a>
+            <a href="@Url.Action("Index","Activities")">Activities / </a>
+            <a href="@Url.Action("Index","Places",new { i = ViewBag.activityName})">Activity Places</a>
+        </h5>
+    </div>
 
-<div>
-    <div  style="margin-top:5px;">
-        <div class="about-heading">
-            <div class="col-md-4">
-         <!--
-              <div>
-                <h6> Children Age Group:</h6>
-            </div>
-         -->
-           
+    <div>
+        <div style="margin-top:5px;">
+            <div class="about-heading">
+                <div class="col-md-4">
+                    <!--
+                         <div>
+                           <h6> Children Age Group:</h6>
+                       </div>
+                    -->
 
-            <div style="padding-top:0.2em">
-                <input type="checkbox" name="age" value="6" />3-6 years old &nbsp;&nbsp;
-                <input type="checkbox" name="age" value="7" />7-12 years old<br />
-            </div>
-            </div>
-            <div class="col-md-offset-4">
-            <div >
 
-                <!--
-                    <h6>Change Activities:</h6>
-                -->
-                
-                <div style="padding-top:0.2em">
-                    <select id="Select1" style="width:150px;"></select>
-                    
-                        <input type="button" value="Change" id="searchButton" onclick="search()">
-                    
+                    <div style="padding-top:0.2em">
+                        <input type="checkbox" name="age" value="6" />3-6 years old &nbsp;&nbsp;
+                        <input type="checkbox" name="age" value="7" />7-12 years old<br />
+                    </div>
+                </div>
+                <div class="col-md-offset-4">
+                    <div>
+
+                        <!--
+                            <h6>Change Activities:</h6>
+                        -->
+
+                        <div style="padding-top:0.2em">
+                            <select id="Select1" style="width:150px;"></select>
+
+                            <input type="button" value="Change" id="searchButton" onclick="search()">
+
+                        </div>
+                    </div>
                 </div>
             </div>
-                </div>
         </div>
     </div>
-</div>
 
-<div class="mapanddata">
-    <div id="map" style="height:425px; padding-top:3em" >
-    </div>
-
-    <div style="padding-top:1em">
+    <div class="mapanddata">
+        <div id="map" style="height:425px; padding-top:3em">
+        </div>
+        <div style="padding-top:1em">
+            <!--
         <table class="table ">
-            <thead>
-                <tr>
-                    
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Address)
-                    </th>
-                    <th style="display:none">
-                        @Html.DisplayNameFor(model => model.Suburb)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Facility)
-                    </th>
-                    <th style="display:none">
-                        @Html.DisplayNameFor(model => model.Lat)
-                    </th>
-                    <th style="display:none">
-                        @Html.DisplayNameFor(model => model.Lon)
-                    </th>
+                <thead>
+                    <tr>
 
-                    <th style="display:none">
-                        @Html.DisplayNameFor(model => model.Activity.Name)
-                    </th>
-                    <th style="display:none"> WANT MORE?</th>
-                </tr>
-            </thead>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.Suburb)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Facility)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.Lat)
+                        </th>
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.Lon)
+                        </th>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    
-                   
-                    <td>
-                        <!--
-                            
-                        -->
-                        <div class="card"  style="width: 10rem;">
-                            <div class="card-body">
-                                <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>                               
+                        <th style="display:none">
+                            @Html.DisplayNameFor(model => model.Activity.Name)
+                        </th>
+                        <th style="display:none"> WANT MORE?</th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+
+                        <td>
+
+                            <div class="card"  style="width: 10rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>
+                                </div>
                             </div>
-                        </div>
-                       
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td style="display:none">
-                        @Html.DisplayFor(modelItem => item.Suburb)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Facility)
-                    </td>
-                    <td style="display:none">
-                        @Html.DisplayFor(modelItem => item.Lat)
-                    </td>
-                    <td style="display:none">
-                        @Html.DisplayFor(modelItem => item.Lon)
-                    </td>
 
-                    <td style="display:none">
-                        @Html.DisplayFor(modelItem => item.Activity.Name)
-                    </td>
-                    <td style="display:none">
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td style="display:none">
+                            @Html.DisplayFor(modelItem => item.Suburb)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Facility)
+                        </td>
+                        <td style="display:none">
+                            @Html.DisplayFor(modelItem => item.Lat)
+                        </td>
+                        <td style="display:none">
+                            @Html.DisplayFor(modelItem => item.Lon)
+                        </td>
 
-                        @Html.ActionLink("More Details", "Details", new { id = item.PlaceId })
-                    </td>
-                </tr>
-            }
-        </table>
+                        <td style="display:none">
+                            @Html.DisplayFor(modelItem => item.Activity.Name)
+                        </td>
+                        <td style="display:none">
 
-
-        <table style="display:none">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Address)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Facility)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Lat)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Lon)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Suburb)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Activity.Name)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
+                            @Html.ActionLink("More Details", "Details", new { id = item.PlaceId })
+                        </td>
+                    </tr>
+                }
+            </table>
+    -->
 
             @foreach (var item in Model)
             {
-                <tr class="coordinates" style="display:none;">
-                    <td class="name">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td class="description">
-                        @Html.DisplayFor(modelItem => item.Facility)
-                    </td>
-                    <td class="latitude">
-                        @Html.DisplayFor(modelItem => item.Lat)
-                    </td>
-                    <td class="longitude">
-                        @Html.DisplayFor(modelItem => item.Lon)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Suburb)
-                    </td>
-                    <td class="ActivityName">
-                        @Html.DisplayFor(modelItem => item.Activity.Name)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.PlaceId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.PlaceId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.PlaceId })
-                    </td>
-                </tr>
+                <div class="w3-card-4 col-sm-5 w3-hover-shadow" style="height:300px; margin:1em">
+                    <header class="w3-container w3-blue">
+                        <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                    </header>
+
+                    <div class="w3-container">
+                        <p>@Html.DisplayFor(modelItem => item.Facility)</p>
+                    </div>
+
+                    <footer class="w3-container ">
+                        <h5>@Html.DisplayFor(modelItem => item.Address)</h5>
+                    </footer>
+                </div>
             }
-        </table>
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+            <table style="display:none">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Facility)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Lat)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Lon)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Suburb)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Activity.Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                @foreach (var item in Model)
+                {
+                    <tr class="coordinates" style="display:none;">
+                        <td class="name">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td class="description">
+                            @Html.DisplayFor(modelItem => item.Facility)
+                        </td>
+                        <td class="latitude">
+                            @Html.DisplayFor(modelItem => item.Lat)
+                        </td>
+                        <td class="longitude">
+                            @Html.DisplayFor(modelItem => item.Lon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Suburb)
+                        </td>
+                        <td class="ActivityName">
+                            @Html.DisplayFor(modelItem => item.Activity.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PlaceId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.PlaceId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PlaceId })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
     </div>
-</div>
 </div>
 <script>
     var map;
@@ -361,5 +378,7 @@
         });
     </script>
 }
+
+
 
 

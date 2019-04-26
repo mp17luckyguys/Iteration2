@@ -70,8 +70,7 @@ body a:focus {
 
 /*-- top-nav--*/
 .headerw3l {
-    padding: 1.5em 0 1.1em;
-    border-bottom: 3px solid #fff;
+    padding: 1.6em 0;
     background: #fff no-repeat 0px 0px;
 }
 
@@ -141,7 +140,7 @@ ul.nav.navbar-nav.navbar-left {
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #fff;
+    color: #66cdaa;
 }
 
 .navbar-default .navbar-nav li.active1 a {
@@ -359,11 +358,12 @@ a.agilebtn {
 /*-- //banner --*/
 /*-- about --*/
 .about, .news, .services, .testimonial, .about, .team, .contact, .gallery, .codes {
-    padding: 1.5em 0;
+    padding: 0 0 0 0;
 }
 
 .about {
-    background: url(../Image/1.jpg) ;
+    background: url(../Image/2.jpg) ;
+    height:450px;
 }
 
     .about h4 {
@@ -2156,9 +2156,7 @@ h2.typoh2 {
 }
 
 @media(max-width:767px) {
-    .headerw3l {
-        padding: 1.5em 1em 1.1em;
-    }
+    
 
     .navbar-header.navbar-left {
         float: left;
@@ -2244,8 +2242,6 @@ h2.typoh2 {
         left: 0;
         -webkit-box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.34);
         -moz-box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.34);
-        -o-box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.34);
-        -ms-box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.34);
         box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.34);
     }
 
@@ -2487,7 +2483,7 @@ h2.typoh2 {
 
     h3.agileits-title {
         font-size: 2.3em;
-        padding: 0 0 0.6em;
+        padding: 5em 0 0 0.6em;
     }
 
     .about h4 {
