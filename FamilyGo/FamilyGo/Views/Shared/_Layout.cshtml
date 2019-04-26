@@ -55,11 +55,46 @@
     <!-- //header -->
     <div class="body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year Family Go</p>
-        </footer>
     </div>
+
+    <div class="footer w3layouts">
+        <div class="container">
+            <div class="footer-agileinfo">
+                <div class="col-md-4 col-sm-6 footer-grid agileits-w3layouts">
+                    <h4 style="color:#66cdaa;font-size:1.5em">Navigation</h4>
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")"><i class="glyphicon glyphicon-chevron-right"></i>Home</a></li>
+                        <li><a href="@Url.Action("Index","Activities")"><i class="glyphicon glyphicon-chevron-right"></i>Find Activities </a></li>
+                        <li><a href="@Url.Action("Index","Education")"><i class="glyphicon glyphicon-chevron-right"></i>Find a proper school for your child</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-6 footer-grid footer-tags agileits-w3layouts">
+                    <h4 style="color:#66cdaa;font-size:1.5em">About Familygo</h4>
+                    <p></p>
+                    <p style="line-height:1.5em">
+                        Our website is designed to help the children of new Australians better integrate into the Australian society<br /> and life.
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-6 footer-grid footer-review agileits-w3layouts">
+                    <h4 style="color:#66cdaa;font-size:1.5em">Contact us</h4>
+                    <ul>
+                        <li><i class="fa fa-user" style="color:white;float:left;"></i><p>&nbsp; Lucky Guys, Monash University</p></li>
+                       
+                        <li><i class="fa fa-map-marker" style="color:white;float:left"></i><p>&nbsp; Dandenong Rd,Caulfied East<br /> &nbsp;&nbsp;&nbsp;  VIC 3145</p></li>
+                        
+                        <li><i class="fa fa-envelope-o" style="color:white;float:left"></i><p>&nbsp; Luckyguys@gmail.com</p></li>
+                    </ul>
+                </div>
+                
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year Family Go</p>
+    </footer>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

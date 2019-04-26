@@ -1,15 +1,9 @@
-﻿@Scripts.Render("~/bundles/jquery")
+﻿
+@Scripts.Render("~/bundles/jquery")
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8' />
-    <title>Create a hover effect</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+   
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
@@ -58,6 +52,7 @@
             left: 25%;
             top: 100px;
         }
+
         #svg2 {
             width: 120px;
             border-style: solid;
@@ -81,7 +76,7 @@
 
         #filter {
             position: absolute;
-            background:#fff;
+            background: #fff;
             height: 100%;
             width: 25%;
             bottom: 0;
@@ -102,7 +97,7 @@
 
         ul {
             position: relative;
-            display:inline-flex;
+            display: inline-flex;
         }
         /* 将三个li宽度平分，高度60px */
 
@@ -201,12 +196,11 @@
             }
 
         .usetitle {
-            border-radius:25px;
+            border-radius: 25px;
         }
     </style>
- 
-</head>
-<body>
+
+<div>
     <div class="container about-heading">
         <h5>
             <a href="@Url.Action("Index","Home")">Home / </a>
@@ -223,8 +217,8 @@
                             <p>There are threre main kind of schools in Australia.</p>
                         </div>
                         <div class="address-agileinfo">
-                            
-                            <p><span class="glyphicon glyphicon-info-sign"></span>Public School</p>                               
+
+                            <p><span class="glyphicon glyphicon-info-sign"></span>Public School</p>
                             <p>Benefits:</p>
                             <p>1.Close to your home</p>
                             <p>2.Reduce cost</p>
@@ -235,8 +229,8 @@
                         </div>
 
                         <div class="address-agileinfo">
-                            
-                            <p><span class="glyphicon glyphicon-info-sign"></span>Cathoic School</p>                            
+
+                            <p><span class="glyphicon glyphicon-info-sign"></span>Cathoic School</p>
                             <p>Benefits:</p>
                             <p>1.Many Catholic schools encourage families to contribute to the Church’s social justice programs.</p>
                             <p>2.The spiritual values of Faith, Hope and Charity all strongly feature in daily Catholic school activities.</p>
@@ -247,8 +241,8 @@
                         </div>
 
                         <div class="address-agileinfo">
-                            
-                            <p><span class="glyphicon glyphicon-info-sign"></span>Private School</p>    
+
+                            <p><span class="glyphicon glyphicon-info-sign"></span>Private School</p>
                             <p>Benefits:</p>
                             <p>1.Private schools proudly promote their wide range of creative, sporting, community and adventuring activities, marketed as extending your child’s abilities, resilience and competitive drive.</p>
                             <p>2.Every private school has a building fund to maintain impressive architecture, lawns and extracurricular facilities</p>
@@ -257,7 +251,7 @@
                             <p>1.Higher tuition fees, extra activities, more expensive uniforms, text books, stationery with the school crest </p>
                             <p>2.A bigger homework load than their public school peers</p>
                         </div>
-                    
+
                     </div>
                 </li>
                 <li role="presentation">
@@ -286,7 +280,7 @@
                                 <input class="clickMe" type="button" value="Clear" onclick="clear();" />
                             </form>
                         </div>
-                        
+
 
                     </div>
                 </li>
@@ -316,7 +310,7 @@
                                 <input class="clickMe" type="button" value="Clear" onclick="clear();" />
                             </form>
                         </div>
-                        
+
                         <!--<div style="height:100px"><input id="clickMe" type="button" value="clickme" onclick="clear();" /></div>-->
                     </div>
                 </li>
@@ -1365,5 +1359,4 @@
             });
         });
     </script>
-</body>
-        </html >
+</div>
