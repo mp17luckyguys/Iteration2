@@ -19,7 +19,7 @@
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
     <style>
         body {
-            margin: 2em 0 0 0;
+            margin: 0 0 0 0;
             padding: 0;
         }
 
@@ -81,7 +81,7 @@
 
         #filter {
             position: absolute;
-            background: red;
+            background:#fff;
             height: 100%;
             width: 25%;
             bottom: 0;
@@ -102,7 +102,7 @@
 
         ul {
             position: relative;
-            display: flex;
+            display:inline-flex;
         }
         /* 将三个li宽度平分，高度60px */
 
@@ -125,7 +125,7 @@
                 font-size: 18px;
                 text-align: center;
                 line-height: 60px;
-                color: #333;
+                color: #fff;
             }
                 /* 设置div内容的基础样式 隐藏内容div*/
 
@@ -199,6 +199,10 @@
                 -webkit-animation: fadeIn 1s;
                 animation: fadeIn 1s;
             }
+
+        .usetitle {
+            border-radius:25px;
+        }
     </style>
  
 </head>
@@ -209,38 +213,70 @@
             <a href="@Url.Action("Index","Education")">Education</a>
         </h5>
     </div>
-    <div id="wholeContiner" style="margin-top:500px">
+    <div id="wholeContiner">
         <div class="col-lg-2 box" id="filter">
-            <ul>
-                <li>
-                    <input class="aa" type="radio" name="check" id="active1" value="information" checked><label for="active1">information</label>
+            <ul role="tabpanel">
+                <li role="presentation">
+                    <input class="aa" type="radio" name="check" id="active1" value="information" checked><label for="active1" style="border:solid;border-radius:15px" role="tab">information</label>
                     <div id="information">information</div>
                 </li>
-                <li>
-                    <input class="aa" type="radio" name="check" id="active2" value="language"><label for="active2">Language</label>
-                    <div id="languageFilter">
-                        Which Country Are You Looking For<br /><select id="selectLanguage" onchange="languageChange(this)"></select><br />
-                        Which Suburb Are You Looking For<br /><select id="selectSuburbL" onchange="suburbChange(this)"></select><br />
-                        Select School Type<br /><select id="selectSchoolTypeL" onchange="suburbChange(this)"></select><br />
-                        Select Age Group<br /><select id="selectAgeL" onchange="suburbChange(this)"></select><br />
-                        <form>
-                            <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
-                            <input class="clickMe" type="button" value="Clear" onclick="clear();" />
-                        </form>
+                <li role="presentation">
+                    <input class="aa" type="radio" name="check" id="active2" value="language"><label for="active2" role="tab" style="border:solid;border-radius:15px">Language</label>
+                    <div id="languageFilter" style="padding-top:0.5em">
+                        <div style="margin-top:0.5em">
+                            Which Country Are You Looking For<br />
+                            <select id="selectLanguage" onchange="languageChange(this)"></select><br />
+                        </div>
+                        <div style="margin-top:0.5em">
+                            Which Suburb Are You Looking For<br />
+                            <select id="selectSuburbL" onchange="suburbChange(this)"></select><br />
+                        </div>
+                        <div style="margin-top:0.5em">
+                            Select School Type<br />
+                            <select id="selectSchoolTypeL" onchange="suburbChange(this)"></select><br />
+                        </div>
+                        <div style="margin-top:0.5em">
+
+                            Select Age Group<br />
+                            <select id="selectAgeL" onchange="suburbChange(this)"></select><br />
+                        </div>
+                        <div style="margin-top:0.5em">
+                            <form>
+                                <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
+                                <input class="clickMe" type="button" value="Clear" onclick="clear();" />
+                            </form>
+                        </div>
+                        
 
                     </div>
                 </li>
-                <li>
-                    <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3">Country</label>
-                    <div id="countryFilter">
-                        Which Country Are You Looking For<br /><select id="selectCountry" onchange="countryChange(this)"></select><br />
-                        Which Suburb Are You Looking For<br /><select id="selectSuburbC" onchange="suburbChange(this)"></select><br />
-                        Select School Type<br /><select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
-                        Select Age Group<br /><select id="selectAgeC" onchange="suburbChange(this)"></select><br />
-                        <form>
-                            <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
-                            <input class="clickMe" type="button" value="Clear" onclick="clear();" />
-                        </form>
+                <li role="presentation">
+                    <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3" style="border:solid;border-radius:15px" role="tab">Country</label>
+                    <div id="countryFilter" style="padding-top:0.5em">
+                        <div style="margin-top:0.5em">
+                            Which Country Are You Looking For<br />
+                            <select id="selectCountry" onchange="countryChange(this)"></select><br />
+                        </div>
+                        <div style="margin-top:0.5em">
+                            Which Suburb Are You Looking For<br />
+                            <select id="selectSuburbC" onchange="suburbChange(this)"></select><br />
+
+                        </div>
+                        <div style="margin-top:0.5em">
+                            Select School Type<br />
+                            <select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
+                        </div>
+                        <div style="margin-top:0.5em">
+                            Select Age Group<br />
+                            <select id="selectAgeC" onchange="suburbChange(this)"></select><br />
+                        </div>
+                        <div style="margin-top:0.5em">
+                            <form>
+                                <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
+                                <input class="clickMe" type="button" value="Clear" onclick="clear();" />
+                            </form>
+                        </div>
+                        
                         <!--<div style="height:100px"><input id="clickMe" type="button" value="clickme" onclick="clear();" /></div>-->
                     </div>
                 </li>
