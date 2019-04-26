@@ -290,10 +290,11 @@ div#bs-example-navbar-collapse-1 {
 
 a.agilebtn {
     font-size: 1em;
-    color: #fff;
-    padding: 0.7em 2em;
+    color: #66cdaa;
+    padding: 0.5em 0.5em;
     display: inline-block;
-    outline: none;
+    outline:solid;
+    outline-color:#66cdaa;
     margin-top: 1em;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -411,11 +412,10 @@ h3.agileits-title {
 }
 
     .news-w3left h4 a {
-        color: #fff;
+        color: black;
         -webkit-transition: .5s all;
         -moz-transition: .5s all;
         -o-transition: .5s all;
-        -ms-transition: .5s all;
         transition: .5s all;
     }
 
@@ -4575,9 +4575,9 @@ h2.typoh2 {
 /*---------------*/
 
 figure.effect-roxy {
-    background: -webkit-linear-gradient(45deg, #ffd700 0%, #66cdaa 100%);
+    background: -webkit-linear-gradient(45deg, #f5f5dc 0%, #81d8d0 100%);
     position:center;
-    border-radius:35px;
+    border-radius:20px;
     height:110px;
 }
 
@@ -4628,7 +4628,7 @@ figure.effect-roxy {
 
     figure.effect-roxy:hover figcaption::before,
     figure.effect-roxy:hover p {
-        opacity: 0.7;
+        opacity: 0.5;
         -webkit-transform: translate3d(0,0,0);
         transform: translate3d(0,0,0);
     }
