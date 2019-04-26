@@ -22,7 +22,8 @@
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
-    <section>
+    <!--
+        <section>
         <div class="about-heading">
             <h2>
                 Activities for Children
@@ -30,9 +31,12 @@
         </div>
     </section>
 
+        -->
+
+
     <div class="container about-heading">
         <h5>
-            <a href="@Url.Action("Index","Home")">Home >> &nbsp;</a>
+            <a href="@Url.Action("Index","Home")">Home /</a>
             <a href="@Url.Action("Index","Activities")">Activities </a>
         </h5>
     </div>
@@ -70,7 +74,7 @@
                             <div class="grid">
                                 <figure class="effect-roxy">
                                     <a class="image-link" href="@Url.Action("Index", "Places",new {i= item.Name })">
-                                        <img src="~/Image/halftone-yellow.png" alt="" />
+                                        <img src="~/Image/light-green.jpg" alt="" />
                                         <figcaption>
                                             <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
                                         </figcaption>

@@ -13,8 +13,8 @@
 <div class="container">
 <div class=" about-heading ">
     <h5>
-        <a href="@Url.Action("Index","Home")">Home >> &nbsp;</a>
-        <a href="@Url.Action("Index","Activities")">Activities >> </a>
+        <a href="@Url.Action("Index","Home")">Home / &nbsp;</a>
+        <a href="@Url.Action("Index","Activities")">Activities / </a>
         <a href="@Url.Action("Index","Places",new { i = ViewBag.activityName})">Activity Places</a>
     </h5>
 </div>
@@ -59,16 +59,17 @@
     </div>
 
     <div style="padding-top:1em">
-        <table class="table tableforgame" border="1">
+        <table class="table ">
             <thead>
                 <tr>
+                    
                     <th>
                         @Html.DisplayNameFor(model => model.Name)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Address)
                     </th>
-                    <th>
+                    <th style="display:none">
                         @Html.DisplayNameFor(model => model.Suburb)
                     </th>
                     <th>
@@ -91,13 +92,23 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    
+                   
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        <!--
+                            
+                        -->
+                        <div class="card"  style="width: 10rem;">
+                            <div class="card-body">
+                                <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>                               
+                            </div>
+                        </div>
+                       
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Address)
                     </td>
-                    <td>
+                    <td style="display:none">
                         @Html.DisplayFor(modelItem => item.Suburb)
                     </td>
                     <td>

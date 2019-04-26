@@ -34,8 +34,8 @@
           <Property Name="Suburb" Type="nvarchar(max)" />
           <Property Name="ActivityActivityId" Type="int" Nullable="false" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“FamilyGoiteration2_db.dbo.Schools”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FamilyGoiteration2_db.dbo.Schools' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Schools">
           <Key>
             <PropertyRef Name="Id" />
@@ -51,8 +51,8 @@
           <Property Name="Y" Type="nvarchar(max)" />
           <Property Name="Secondary_language" Type="nvarchar(max)" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“FamilyGoiteration2_db.dbo.Suburbs”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'FamilyGoiteration2_db.dbo.Suburbs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Suburbs">
           <Key>
             <PropertyRef Name="Id" />

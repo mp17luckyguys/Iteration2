@@ -4048,7 +4048,7 @@ h3 {
     
     }
     .about-heading ul {
-        font-family:'Comic Sans MS';
+        font-family:Georgia;
         font-size:1.2em;
     }
     .about-heading p {
@@ -4582,7 +4582,7 @@ figure.effect-roxy {
     background: -webkit-linear-gradient(45deg, #ffd700 0%, #66cdaa 100%);
     position:center;
     border-radius:35px;
-    height:160px;
+    height:110px;
 }
 
     figure.effect-roxy img {
