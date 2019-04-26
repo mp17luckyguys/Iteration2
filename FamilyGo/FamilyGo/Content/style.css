@@ -20,7 +20,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    font-family:'Comic Sans MS';
+    font-family:Georgia;
 }
 
 p {
@@ -72,7 +72,7 @@ body a:focus {
 .headerw3l {
     padding: 1.5em 0 1.1em;
     border-bottom: 3px solid #fff;
-    background:url(../Image/1.jpg) no-repeat 0px 0px;
+    background: #fff no-repeat 0px 0px;
 }
 
 .navbar-default {
@@ -84,11 +84,11 @@ body a:focus {
 
 .navbar-header h1 {
     font-size: 2.5em;
-    font-family:'Comic Sans MS';
+    font-family:Georgia;
 }
 
     .navbar-header h1 a {
-        color: #fff;
+        color: black;
         text-decoration: none;
         display: block;
     }
@@ -98,7 +98,7 @@ body a:focus {
             font-size: .28em;
             margin-top: 0.3em;
             letter-spacing: 3px;
-            color: #fff;
+            color:black;
             font-family:Georgia,cursive;
         }
 
@@ -109,7 +109,7 @@ ul.nav.navbar-nav.navbar-left {
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-    color: #fff;
+    color: black;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -132,7 +132,7 @@ ul.nav.navbar-nav.navbar-left {
     }
 
 .navbar-default .navbar-nav > li > a {
-    color: #fff;
+    color: black;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
@@ -177,20 +177,24 @@ div#bs-example-navbar-collapse-1 {
 }
 /*-- hover effect6 --*/
 .navbar-header h1 a i {
-    color: #a0db8e;
+    /*color: #a0db8e;*/
+    color: black;
     font-style: inherit;
 }
 
     .navbar-header h1 a i.logo-w3l2 {
-        color: #b6fcd5;
+        /*--color: #b6fcd5; --*/
+        color: black;
     }
 
     .navbar-header h1 a i.logo-w3l3 {
-        color: #b4eeb4;
+        /*color: #b4eeb4;*/
+        color:black;
     }
 
     .navbar-header h1 a i.logo-w3l4 {
-        color: #a0db8e;
+        /*color: #a0db8e;*/
+        color: black;
     }
 /*-- Yaku --*/
 .link--yaku {
@@ -358,23 +362,27 @@ a.agilebtn {
     padding: 1.5em 0;
 }
 
+.about {
+    background: url(../Image/1.jpg) ;
+}
+
     .about h4 {
         font-size: 1.8em;
-        color: #ffd700;
+        color: #66cdaa;
         font-weight: 500;
         margin-bottom: 0.4em;
     }
 
 .about-right ul li {
     display: block;
-    font-size: 1em;
-    color: #999;
+    font-size: 1.2em;
+    color: #fff;
     margin-top: 1em;
 }
 
     .about-right ul li span.glyphicon {
         padding-right: 6px;
-        color: #ffd700;
+        color: #66cdaa;
     }
 
 p {
@@ -386,7 +394,7 @@ p {
 h3.agileits-title {
     font-size: 2.5em;
     padding: 0.8em 2em;
-    font-family:'Comic Sans MS';
+    font-family:Georgia;
     text-align: center;
     line-height: 1.3em;
     color: #66cdaa;
@@ -394,7 +402,7 @@ h3.agileits-title {
 /*-- //about --*/
 /*-- news --*/
 .news {
-    background: #66cdaa;
+    background: #fff;
 }
 
 .news-w3left h4 {
@@ -419,7 +427,7 @@ h3.agileits-title {
 }
 
 .news-w3left p {
-    color: #fff;
+    color: black;
     width: 80%;
 }
 
@@ -434,10 +442,10 @@ h3.agileits-title {
 
 h3.agileits-title1 {
     font-size: 2em;
-    font-family:'Comic Sans MS';
+    font-family:Georgia;
     text-align: center;
     line-height: 1em;
-    color: #fff;
+    color: black;
     margin-bottom: 1em;
 }
 
@@ -501,7 +509,7 @@ h3.agileits-title1 {
 /*-- //services --*/
 /*-- slid --*/
 .w3layouts-slid {
-    background: url(../images/1.jpg)no-repeat center fixed;
+    background: url(../images/1.jpg) no-repeat center fixed;
     background-size: cover;
     padding: 3em 0;
     text-align: center;
@@ -3550,7 +3558,7 @@ ul.dropdown-menu {
 }
 
 .agile-news-img {
-    background: url(../images/6.jpg) no-repeat 0px 0px;
+    background: url(../Image/1.jpg) no-repeat 0px 0px;
     background-size: cover;
     min-height: 250px;
 }
@@ -3588,7 +3596,7 @@ ul.dropdown-menu {
 }
 
 .agile-news-img-info p {
-    color: #FFFFFF;
+    color: black;
     font-size: .9em;
     margin: 1em 0;
     line-height: 1.8em;
@@ -4001,7 +4009,7 @@ h3 {
 }
 
     .about-heading h2 {
-        font-family: 'Comic Sans MS';
+        font-family:Georgia;
         color: #66cdaa;
         font-size: 3em;
         margin-left:25%;
@@ -4015,20 +4023,20 @@ h3 {
        
     }
     .about-heading h4 {
-        font-family: 'Comic Sans MS';
+        font-family:Georgia;
         color: black;
         font-size: 1.3em;
         margin: 0;
     }
     .about-heading h5 {
-        font-family:'Times New Roman', Times, serif;
+        font-family:Georgia;
         color: black;
         font-size: 1.2em;
         margin: 0;
         text-transform:uppercase;
     }
     .about-heading h6 {
-        font-family:'Times New Roman', Times, serif;
+        font-family:Georgia;
         color: black;
         font-size: 1em;
         margin: 0;
