@@ -46,7 +46,7 @@
                         <div style="padding-top:0.2em">
                             <select id="Select1" style="width:150px;"></select>
 
-                            <input type="button" value="Change" id="searchButton" onclick="search()">
+                            <input type="button" value="Search" id="searchButton" onclick="search()">
 
                         </div>
                     </div>
@@ -131,25 +131,25 @@
                 }
             </table>
     -->
-            <div style="padding-left:20px">
+            <div style="font-family:Georgia;line-height:1.2em;padding-top:1em;">
+                <p><strong>Click the Button to Sort Places Alphabetically:</strong> &nbsp;&nbsp; <button onclick="sortList()"> Sort</button></p>
+            </div>
+            
+            <div style="padding-left:20px" id="id01">
                 @foreach (var item in Model)
                 {
                     <div class="w3-card-4 col-sm-11 w3-hover-shadow" style="height:150px; margin:1em;">
                         <header class="w3-container w3-blue">
                             <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
                         </header>
-
                         <div class="w3-container">
-                            <p>@Html.DisplayFor(modelItem => item.Facility)</p>
+                            <p style="font-family:Georgia;line-height:1.2em;padding-top:1em;">@Html.DisplayFor(modelItem => item.Facility)</p>
                         </div>
-
-                        <footer class="w3-container ">
-                            <h5>@Html.DisplayFor(modelItem => item.Address)</h5>
-                        </footer>
                     </div>
                 }
                 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
             </div>
+
             <table style="display:none">
                 <thead>
                     <tr>
@@ -213,6 +213,44 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function sortList() {
+        var list, i, switching, b, shouldSwitch;
+        list = document.getElementById("id01");
+        switching = true;
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // start by saying: no switching is done:
+            switching = false;
+            b = list.getElementsByTagName("H3");
+            div = list.getElementsByTagName("DIV");
+            // Loop through all list-items:
+            for (i = 0; i < (b.length - 1); i++) {
+                // start by saying there should be no switching:
+                shouldSwitch = false;
+                /* check if the next item should
+                switch place with the current item: */
+                if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+                    /* if next item is alphabetically
+                    lower than current item, mark as a switch
+                    and break the loop: */
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark the switch as done: */
+                div[i].parentNode.insertBefore(div[i + 1], div[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
+
 <script>
     var map;
     var locations = [];
