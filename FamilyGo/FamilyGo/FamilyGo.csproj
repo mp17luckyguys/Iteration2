@@ -427,8 +427,6 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <EntityDeploy Include="Models\FamilyGoiteration2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -439,6 +437,10 @@
     </Content>
     <Content Include="json\Country.json" />
     <Content Include="json\Language.json" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="json\new.geojson" />
     <None Include="Properties\PublishProfiles\FamilyGo - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FamilyGo - FTP1.pubxml" />
@@ -589,8 +591,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.min.css.map" />

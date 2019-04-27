@@ -396,6 +396,8 @@
 
     function addMarkerInfo() {
         for (var i = 0; i < locations.length; i++) {
+           // var contentString = '<div id="content">' + '<h4 style="color:black">' + locations[i].name + '</h4></br>' + locations[i].description +
+           //     '</br></br><a href = "Places/Details/?id=' + locations[i].id + '" style="color:blue"><u>More Details</u></a></div>';
             var contentString = '<div id="content">' + '<h4 style="color:black">' + locations[i].name + '</h4></br>' + locations[i].description +
                 '</br></br><a href = "Places/Details/?id=' + locations[i].id + '" style="color:blue"><u>More Details</u></a></div>';
             const marker = new google.maps.Marker({
