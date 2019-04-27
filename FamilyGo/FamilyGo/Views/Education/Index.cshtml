@@ -271,11 +271,11 @@
                             Select School Type:<br />
                             <select id="selectSchoolTypeL" onchange="suburbChange(this)"></select><br />
                         </div>
-                        <div style="margin-top:0.5em">
+                      <!-- <div style="margin-top:0.5em">
 
                             Select Age Group:<br />
                             <select id="selectAgeL" onchange="suburbChange(this)"></select><br />
-                        </div>
+                        </div>-->
                         <div style="margin-top:0.5em">
                             <form>
                                 <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
@@ -302,10 +302,10 @@
                             Select School Type:<br />
                             <select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
                         </div>
-                        <div style="margin-top:0.5em">
+                        <!-- <div style="margin-top:0.5em">
                             Select Age Group:<br />
                             <select id="selectAgeC" onchange="suburbChange(this)"></select><br />
-                        </div>
+                        </div>-->
                         <div style="margin-top:0.5em">
                             <form>
                                 <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
@@ -321,6 +321,16 @@
         <div class="col-lg-10" id='map'></div>
     </div>
     <script>
+        function sortSelectOptions(selectElement) {
+            var options = $(selectElement + " option");
+
+            options.sort(function (a, b) {
+                if (a.text.toUpperCase() > b.text.toUpperCase()) return 1;
+                else if (a.text.toUpperCase() < b.text.toUpperCase()) return -1;
+                else return 0;
+            });
+            $(selectElement).empty().append(options);
+        }
         var countryFunction = false;
         var languageFunction = false;
         var suburbSelected = "";
@@ -334,6 +344,7 @@
                     //
                     loadSuburb();
                     document.getElementById("selectSuburbC").options[0].selected = true;
+
                     country();
                 }
                 if ($(this).val() == "language") {
@@ -509,7 +520,7 @@
                         map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: true });
                     }
                     tooltip.style("visibility", "visible").text(thisElement.features[0].properties.vic_loca_2);
-                    tooltip.style("top", (thisElement.point.y + 20) + "px").style("left", (thisElement.point.x + 310) + "px");
+                    tooltip.style("top", (thisElement.point.y + 150) + "px").style("left", (thisElement.point.x + 310) + "px");
                     clicked = thisElement.features[0].properties.vic_loca_2;
                     Ddata.forEach(function (e) {
                         if (e["Suburb"].toUpperCase() == clicked) {
@@ -529,6 +540,7 @@
 
                 map.on("click", "state-fills", function (thisElement) {
                     suburbSelected = thisElement.features[0].properties.vic_loca_2;
+                    $("#selectSuburbC").val(suburbSelected);
                     suburbChange({ "id": "selectSuburbC", "clickState": "clicked" });
                 });
             });
@@ -672,7 +684,7 @@
                         map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: true });
                     }
                     tooltip.style("visibility", "visible").text(thisElement.features[0].properties.vic_loca_2);
-                    tooltip.style("top", (thisElement.point.y + 20) + "px").style("left", (thisElement.point.x + 310) + "px");
+                    tooltip.style("top", (thisElement.point.y + 150) + "px").style("left", (thisElement.point.x + 310) + "px");
 
                     clicked = thisElement.features[0].properties.vic_loca_2;
                     Ddata.forEach(function (e) {
@@ -693,6 +705,7 @@
 
                 map.on("click", "state-fills", function (thisElement) {
                     suburbSelected = thisElement.features[0].properties.vic_loca_2;
+                    $("#selectSuburbL").val(suburbSelected);
                     suburbChange({ "id": "selectSuburbC", "clickState": "clicked" });
                 });
             });
@@ -882,15 +895,17 @@
         var countrySelected = 0;
         var languageSelected = 0;
         var suburbs = [];
-        selectCountry.options.add(new Option("select country", 0))
+        selectCountry.options.add(new Option("-select country-", 0));
+        
         for (var i = 0; i < countryColor.length; i++) {
             selectCountry.options.add(new Option(countryColor[i]["country"], countryColor[i]["id"]));
         }
-        selectLanguage.options.add(new Option("select language", 0))
+        sortSelectOptions("#selectCountry");
+        selectLanguage.options.add(new Option("-select language-", 0));
         for (var i = 0; i < languageColor.length; i++) {
             selectLanguage.options.add(new Option(languageColor[i]["language"], languageColor[i]["id"]));
         }
-
+        sortSelectOptions("#selectLanguage");
         function countryChange(obj) {
             d3.select("#svg2").remove();
             document.getElementById("svg1").style.display = "block";
@@ -949,14 +964,14 @@
             selectSchoolTypeL.options.add(new Option("Independent", "Independent"));
             selectSchoolTypeL.options.add(new Option("Catholic", "Catholic"));
             selectSchoolTypeL.options.add(new Option("LanguageSchool", "LanguageSchool"));
-            selectAgeL.options.length = 0;
+          /*  selectAgeL.options.length = 0;
             selectAgeL.options.add(new Option("All Age Group", "none"));
             selectAgeL.options.add(new Option("3-6 Years", "3-6 Years"));
             selectAgeL.options.add(new Option("7-12 Years", "7-12 Years"));
             selectAgeC.options.length = 0;
             selectAgeC.options.add(new Option("All Age Group", "none"));
             selectAgeC.options.add(new Option("3-6 Years", "3-6 Years"));
-            selectAgeC.options.add(new Option("7-12 Years", "7-12 Years"));
+            selectAgeC.options.add(new Option("7-12 Years", "7-12 Years"));*/
             if (countryFunction) {
                 selectSuburbC.options.length = 0;
                 suburbs = [];
@@ -967,10 +982,11 @@
                     }
 
                 }
-                selectSuburbC.options.add(new Option("select suburb", 0))
+                selectSuburbC.options.add(new Option("-select suburb-", 0))
                 for (var i = 0; i < suburbs.length; i++) {
                     selectSuburbC.options.add(new Option(suburbs[i]["properties"]["vic_loca_2"].toLowerCase(), suburbs[i]["properties"]["vic_loca_2"].toUpperCase()));
                 }
+                sortSelectOptions("#selectSuburbC");
             }
             if (languageFunction) {
                 selectSuburbL.options.length = 0;
@@ -981,10 +997,11 @@
                         if (languageSelected == boundaries["features"][i]["main_language_id"]) { suburbs.push(boundaries["features"][i]); }
                     }
                 }
-                selectSuburbL.options.add(new Option("select suburb", 0))
+                selectSuburbL.options.add(new Option("-select suburb-", 0))
                 for (var i = 0; i < suburbs.length; i++) {
                     selectSuburbL.options.add(new Option(suburbs[i]["properties"]["vic_loca_2"].toLowerCase(), suburbs[i]["properties"]["vic_loca_2"].toUpperCase()));
                 }
+                sortSelectOptions("#selectSuburbL");
             }
 
         }
@@ -1083,14 +1100,14 @@
 
 
                 var schoolTypeSelected = "";
-                var ageSelected = "";
+                //var ageSelected = "";
                 if (countryFunction) {
                     schoolTypeSelected = selectSchoolTypeC.options[selectSchoolTypeC.selectedIndex].value;
-                    ageSelected = selectAgeC.options[selectAgeC.selectedIndex].value;
+                    //ageSelected = selectAgeC.options[selectAgeC.selectedIndex].value;
                 }
                 if (languageFunction) {
                     schoolTypeSelected = selectSchoolTypeL.options[selectSchoolTypeL.selectedIndex].value;
-                    ageSelected = selectAgeL.options[selectAgeL.selectedIndex].value;
+                    //ageSelected = selectAgeL.options[selectAgeL.selectedIndex].value;
                 }
                 document.getElementById("svg1").style.display = "none";
                 var a = document.getElementById("svg");
@@ -1144,8 +1161,12 @@
                 })
                 //console.log(schools);
                 var geojson = { "type": "FeatureCollection", "features": [] };
-                if (schoolTypeSelected == "none" && ageSelected == "none") {
+                if (schoolTypeSelected == "none"
+                    //&& ageSelected == "none"
+                ) {
+                    
                     for (i = 0; i < schools.length; i++) {
+                        
                         var feature = {
                             "type": "Feature",
                             "properties": {
@@ -1162,12 +1183,18 @@
                                 ]
                             }
                         };
+                        if (schools[i].Education_Sector.trim() == "LanguageSchool") { feature["properties"]["language"] = schools[i].Secondary_language.trim(); }
+                        else { feature["properties"]["language"] = ""; }
                         geojson["features"].push(feature);
                     }
                 }
-                else if (schoolTypeSelected != "none" && ageSelected == "none") {
+                else if (schoolTypeSelected != "none"
+                    //&& ageSelected == "none"
+                ) {
                     for (i = 0; i < schools.length; i++) {
-                        if (schools[i].Education_Sector.trim() == schoolTypeSelected || schools[i].School_Type.trim() == "Kindergarten") {
+                        if (schools[i].Education_Sector.trim() == schoolTypeSelected
+                            //|| schools[i].School_Type.trim() == "Kindergarten"
+                        ) {
                             var feature = {
                                 "type": "Feature",
                                 "properties": {
@@ -1184,10 +1211,13 @@
                                     ]
                                 }
                             };
+                            if (schools[i].Education_Sector.trim() == "LanguageSchool") { feature["properties"]["language"] = schools[i].Secondary_language.trim(); }
+                            else { feature["properties"]["language"] = ""; }
                             geojson["features"].push(feature);
                         }
                     }
                 }
+                    /*
                 else if (schoolTypeSelected == "none" && ageSelected != "none") {
                     for (i = 0; i < schools.length; i++) {
                         if (schools[i].School_Type.trim() == "Kindergarten" && ageSelected == "3-6 Years") {
@@ -1279,7 +1309,7 @@
                     }
 
                 }
-                console.log(geojson["features"]);
+                */
                 // add markers to map
                 geojson.features.forEach(function (marker) {
                     // create a DOM element for the marker
@@ -1320,7 +1350,10 @@
                         div1.textContent = marker.properties.message;
                         div1.style.fontSize = "13px";
                         var div2 = document.createElement("div");
-                        div2.textContent = marker.properties.School_Type + "/" + marker.properties.Education_Sector;
+                        console.log("yes");
+                        if (marker.properties.School_Type == "LanguageSchool") { console.log("yes"); div2.textContent =marker.properties.School_Type + "/" + marker.properties.language;}
+                        else { div2.textContent = marker.properties.School_Type + "/" + marker.properties.Education_Sector; }
+                        
                         div2.style.fontSize = "10px";
                         span.appendChild(div1);
                         span.appendChild(div2);
@@ -1369,5 +1402,10 @@
                 }
             });
         });
+
+
+
+
+
     </script>
 </div>

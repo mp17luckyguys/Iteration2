@@ -199,6 +199,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ExcelToDataBase.cs" />
     <Compile Include="Utils\ExcelToDBActivity.cs" />
+    <Compile Include="Utils\ExcelToDBLS.cs" />
     <Compile Include="Utils\ExcelToDBOtherActivity.cs" />
     <Compile Include="Utils\ExcelToDBParks.cs" />
     <Compile Include="Utils\ExcelToDBPSchool.cs" />
@@ -429,7 +430,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="json\Language.json" />
     <EntityDeploy Include="Models\FamilyGoiteration2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FamilyGoiteration2.Designer.cs</LastGenOutput>
@@ -437,6 +437,9 @@
     <Content Include="Models\FamilyGoiteration2.edmx.diagram">
       <DependentUpon>FamilyGoiteration2.edmx</DependentUpon>
     </Content>
+    <Content Include="json\Country.json" />
+    <Content Include="json\Language.json" />
+    <None Include="json\new.geojson" />
     <None Include="Properties\PublishProfiles\FamilyGo - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FamilyGo - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\FamilyGo - Web Deploy.pubxml" />
@@ -581,8 +584,6 @@
     <Content Include="Views\Activities\InformationTwo.cshtml" />
     <Content Include="Views\Shared\search_layout.cshtml" />
     <Content Include="Views\Education\Index.cshtml" />
-    <Content Include="json\Country.json" />
-    <Content Include="json\new.geojson" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+//using static FamilyGo.Utils.ExcelToDBLS;
 //using static FamilyGo.Utils.WriteSuburbToDB;
 //using static FamilyGo.Utils.ExcelToDBActivity;
 //using static FamilyGo.Utils.ExcelToDBOtherActivity;
@@ -34,6 +35,9 @@ namespace FamilyGo.Controllers
             //ex2.Page_Load();
             //ExcelToDBPSchool ex = new ExcelToDBPSchool();
             //ex.Page_Load();
+            //ExcelToDBLSS ex = new ExcelToDBLSS();
+            //ex.Page_Load();
+            
             return View();
         }
 
