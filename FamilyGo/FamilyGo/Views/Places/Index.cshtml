@@ -214,6 +214,9 @@
                 <thead>
                     <tr>
                         <th>
+                            @Html.DisplayNameFor(model => model.PlaceId)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.Name)
                         </th>
                         <th>
@@ -240,34 +243,37 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr class="coordinates" style="display:none;">
-                        <td class="name">
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td class="description">
-                            @Html.DisplayFor(modelItem => item.Facility)
-                        </td>
-                        <td class="latitude">
-                            @Html.DisplayFor(modelItem => item.Lat)
-                        </td>
-                        <td class="longitude">
-                            @Html.DisplayFor(modelItem => item.Lon)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Suburb)
-                        </td>
-                        <td class="ActivityName">
-                            @Html.DisplayFor(modelItem => item.Activity.Name)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.PlaceId }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.PlaceId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.PlaceId })
-                        </td>
-                    </tr>
+                <tr class="coordinates" style="display:none;">
+                    <td class="id">
+                        @Html.DisplayFor(modelItem => item.PlaceId)
+                    </td>
+                    <td class="name">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td class="description">
+                        @Html.DisplayFor(modelItem => item.Facility)
+                    </td>
+                    <td class="latitude">
+                        @Html.DisplayFor(modelItem => item.Lat)
+                    </td>
+                    <td class="longitude">
+                        @Html.DisplayFor(modelItem => item.Lon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Suburb)
+                    </td>
+                    <td class="ActivityName">
+                        @Html.DisplayFor(modelItem => item.Activity.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PlaceId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PlaceId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PlaceId })
+                    </td>
+                </tr>
                 }
             </table>
         </div>
@@ -346,6 +352,7 @@
         var clat = parseFloat(pos.coords.latitude);
         var clon = parseFloat(pos.coords.longitude);
         $(".coordinates").each(function () {
+            var id = $(".id", this).text().trim();
             var name = $(".name", this).text().trim();
             var longitude = $(".longitude", this).text().trim();
             var latitude = $(".latitude", this).text().trim();
@@ -354,6 +361,7 @@
             // Create a point data structure to hold the values.
             console.log(name);
             var point = {
+                "id": id,
                 "name": name,
                 "latitude": parseFloat(latitude),
                 "longitude": parseFloat(longitude),
@@ -389,7 +397,7 @@
     function addMarkerInfo() {
         for (var i = 0; i < locations.length; i++) {
             var contentString = '<div id="content">' + '<h4 style="color:black">' + locations[i].name + '</h4></br>' + locations[i].description +
-                '</div>';
+                '</br></br><a href = "Places/Details/?id=' + locations[i].id + '" style="color:blue"><u>More Details</u></a></div>';
             const marker = new google.maps.Marker({
                 position: { lat: locations[i].latitude, lng: locations[i].longitude },
                 map: map
