@@ -17,10 +17,21 @@ namespace FamilyGo.Controllers
         private FamilyGoiteration2_dbEntities1 db = new FamilyGoiteration2_dbEntities1();
 
         // GET: Activities
+        //public ActionResult Index()
+        //{
+         ////   ViewBag.activities = db.Activities.ToList();
+          //  return View(db.Activities.ToList());
+        //}
+
         public ActionResult Index()
         {
-            ViewBag.activities = db.Activities.ToList();
-            return View(db.Activities.ToList());
+            var age = from a in db.Activities
+                      select a;
+            if (!String.IsNullOrEmpty("12"))
+            {
+                age = age.Where(a => a.Description.Contains("12"));
+            }
+            return View(age.ToList());
         }
 
         public ActionResult Information()

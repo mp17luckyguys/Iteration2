@@ -211,7 +211,7 @@
             <a href="@Url.Action("Index","Education")">Education</a>
         </h5>
     </div>
-    <div id="wholeContiner" style="margin:2em">
+    <div id="wholeContiner" style="margin:1.3em">
         <div class="col-lg-2 box" id="filter">
             <ul id="filter_name">
                 <li id="attribute_name">
@@ -259,7 +259,7 @@
                     </div>
                 </li>
                 <li id="attribute_name">
-                    <input class="aa" type="radio" name="check" id="active2" value="language"><label for="active2" role="tab" style="border:solid;border-radius:15px">Language</label>
+                    <input class="aa" type="radio" name="check" id="active2" value="language"><label for="active2" style="border:solid;border-radius:15px">Language</label>
                     <div id="languageFilter" style="padding:2.5em" class="address-agileinfo">
                         <div style="margin-top:0.5em">
                             Select a Language:<br />
@@ -284,12 +284,15 @@
                                 <input class="clickMe" type="button" value="Clear" onclick="clear();" />
                             </form>
                         </div>
+                        <div style="margin-top:0.5em">
+                            <p><span class="glyphicon glyphicon-info-sign"></span>The filter has no order limit for selection.</p>
+                        </div>
 
 
                     </div>
                 </li>
                 <li id="attribute_name">
-                    <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3" style="border:solid;border-radius:15px" role="tab">Country</label>
+                    <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3" style="border:solid;border-radius:15px">Country</label>
                     <div id="countryFilter" style="padding:3em" class="address-agileinfo">
                         <div style="margin-top:0.5em">
                             Select a Country<br />
@@ -314,7 +317,9 @@
                                 <input class="clickMe" type="button" value="Clear" onclick="clear();" />
                             </form>
                         </div>
-
+                        <div style="margin-top:0.5em">
+                            <p><span class="glyphicon glyphicon-info-sign"></span>The filter has no order limit for selection.</p>
+                        </div>
                         <!--<div style="height:100px"><input id="clickMe" type="button" value="clickme" onclick="clear();" /></div>-->
                     </div>
                 </li>
