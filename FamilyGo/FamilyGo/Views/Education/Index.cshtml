@@ -1149,7 +1149,7 @@
                         var feature = {
                             "type": "Feature",
                             "properties": {
-                                "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                "message": schools[i].School_Name.trim(),
                                 "iconSize": [15, 15],
                                 "Education_Sector": schools[i].Education_Sector.trim(),
                                 "School_Type": schools[i].School_Type.trim()
@@ -1171,7 +1171,7 @@
                             var feature = {
                                 "type": "Feature",
                                 "properties": {
-                                    "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                    "message": schools[i].School_Name.trim(),
                                     "iconSize": [15, 15],
                                     "Education_Sector": schools[i].Education_Sector.trim(),
                                     "School_Type": schools[i].School_Type.trim()
@@ -1194,7 +1194,7 @@
                             var feature = {
                                 "type": "Feature",
                                 "properties": {
-                                    "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                    "message": schools[i].School_Name.trim(),
                                     "iconSize": [15, 15],
                                     "Education_Sector": schools[i].Education_Sector.trim(),
                                     "School_Type": schools[i].School_Type.trim()
@@ -1213,7 +1213,7 @@
                             var feature = {
                                 "type": "Feature",
                                 "properties": {
-                                    "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                    "message": schools[i].School_Name.trim(),
                                     "iconSize": [15, 15],
                                     "Education_Sector": schools[i].Education_Sector.trim(),
                                     "School_Type": schools[i].School_Type.trim()
@@ -1237,7 +1237,7 @@
                                 var feature = {
                                     "type": "Feature",
                                     "properties": {
-                                        "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                        "message": schools[i].School_Name.trim(),
                                         "iconSize": [15, 15],
                                         "Education_Sector": schools[i].Education_Sector.trim(),
                                         "School_Type": schools[i].School_Type.trim()
@@ -1260,7 +1260,7 @@
                                 var feature = {
                                     "type": "Feature",
                                     "properties": {
-                                        "message": schools[i].School_Name.trim() + "\n" + schools[i].School_Type.trim() + "\n" + schools[i].Education_Sector.trim(),
+                                        "message": schools[i].School_Name.trim(),
                                         "iconSize": [15, 15],
                                         "Education_Sector": schools[i].Education_Sector.trim(),
                                         "School_Type": schools[i].School_Type.trim()
@@ -1311,11 +1311,21 @@
                         }
                         var span = document.createElement("span");
                         span.setAttribute('class', "popuptext");
-                        span.style.width = "160px";
+                        span.style.width = "200px";
                         span.style.whiteSpace = "pre-wrap";
+                        span.style.border = "solid";
+                        span.style.background = "white";
                         span.id = "myPopup";
+                        var div1 = document.createElement("div");
+                        div1.textContent = marker.properties.message;
+                        div1.style.fontSize = "13px";
+                        var div2 = document.createElement("div");
+                        div2.textContent = marker.properties.School_Type + "/" + marker.properties.Education_Sector;
+                        div2.style.fontSize = "10px";
+                        span.appendChild(div1);
+                        span.appendChild(div2);
                         el.appendChild(span);
-                        span.textContent = marker.properties.message;
+                        //span.textContent = marker.properties.message;
                         var popup = document.getElementById("myPopup");
                         popup.classList.toggle("show");
                     });
@@ -1329,7 +1339,6 @@
                 function clickHidden(eve) {
                     if (eve.target.className != "marker mapboxgl-marker mapboxgl-marker-anchor-center" && document.getElementById("myPopup")) {
                         var x = document.getElementsByClassName("popuptext");
-
                         var i;
                         for (i = 0; i < x.length; i++) {
                             x[i].parentNode.removeChild(x[i]);
