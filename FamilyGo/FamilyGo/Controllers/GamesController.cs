@@ -17,7 +17,9 @@ namespace FamilyGo.Controllers
         // GET: Games
         public ActionResult Index()
         {
-            return View(db.Games.ToList());
+            
+            var newL = db.Games.ToList().OrderBy(x => x.Name).ToList();
+            return View(newL);
         }
 
         // GET: Games/Details/5
