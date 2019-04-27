@@ -211,26 +211,7 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        var $sort = $('.asc');
-        var $list = $('#sort-list');
-        var $listLi = $('h3', $list);
-        $listLi.sort(function (a, b) {
-            var keyA = $(a).text();
-            var keyB = $(b).text();
-            if ($($sort).hasClass('asc')) {
-                return (keyA > keyB) ? 1 : 0;
-            } else {
-                return (keyA < keyB) ? 1 : 0;
-            }
-        });
-        $.each($listLi, function (index, row) {
-            $list.append(row);
-        });
-        e.preventDefault();
-    });
-</script>
+
 
 <script>
     function sortList() {
@@ -243,7 +224,7 @@
             // start by saying: no switching is done:
             switching = false;
             b = list.getElementsByTagName("H3");
-            div = list.getElementsByTagName("div");
+            div = list.getElementsByTagName("DIV");
             // Loop through all list-items:
             for (i = 0; i < (b.length - 1); i++) {
                 // start by saying there should be no switching:
@@ -261,7 +242,7 @@
             if (shouldSwitch) {
                 /* If a switch has been marked, make the switch
                 and mark the switch as done: */
-                div[i].insertBefore(div[i + 1], div[i]);
+                div[i].parentNode.insertBefore(div[i + 1], div[i]);
                 switching = true;
             }
         }
