@@ -2,6 +2,7 @@
 @Scripts.Render("~/bundles/jquery")
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
    
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
@@ -22,13 +23,15 @@
             height: 100%;
             width: 75%;
             bottom: 0;
-            top: 0;
+            top: 15em;
             left: 25%;
         }
 
         #wholeContiner {
-            width: 100%;
-            height: 100%;
+            /*width: 100%;
+            height: 100%;*/
+            width: 700px;
+            height: 700px;
         }
 
         p {
@@ -56,7 +59,7 @@
             border-width: 2px;
             background-color: white;
             left: 25%;
-            top: 140px;
+            top: 190px;
         }
 
         #svg2 {
@@ -66,7 +69,7 @@
             border-width: 2px;
             background-color: white;
             left: 25%;
-            top: 100px;
+            top: 190px;
         }
 
         .axis {
@@ -83,17 +86,13 @@
         #filter {
             position: absolute;
             background: #fff;
-            height: 100%;
+            height: 520px;
             width: 25%;
             bottom: 0;
-            top: 130px;
+            top: 11em;
         }
 
-        .box {
-            width: 50vw;
-            height: 50vh;
-            margin: 0 auto;
-        }
+        
         /* 清除li样式 */
 
         ul, li {
@@ -101,13 +100,13 @@
         }
         /* 将ul相对定位，目的是让内容的div绝对定位时相对ul定位，否则会相对body定位 */ /* ul弹性盒，目的是让li横着排，也可以将li浮动或者转行内块 */
 
-        ul {
+        #filter_name {
             position: relative;
             display: inline-flex;
         }
         /* 将三个li宽度平分，高度60px */
 
-        li {
+        #attribute_name {
             flex: 1;
             height: 60px;
         }
@@ -207,23 +206,23 @@
         }
     </style>
 
-<div>
-    <div class="container about-heading">
+<div style="margin-top:7.5em">
+    <div class=" container about-heading">
         <h5>
             <a href="@Url.Action("Index","Home")">Home / </a>
             <a href="@Url.Action("Index","Education")">Education</a>
         </h5>
     </div>
-    <div id="wholeContiner">
+    <div id="wholeContiner" style="margin:2em">
         <div class="col-lg-2 box" id="filter">
-            <ul role="tabpanel">
-                <li role="presentation">
-                    <input class="aa" type="radio" name="check" id="active1" value="information" checked><label for="active1" style="border:solid;border-radius:15px" role="tab">Information</label>
-                    <div id="information">
-                        <div>
+            <ul id="filter_name">
+                <li id="attribute_name">
+                    <input class="aa" type="radio" name="check" id="active1" value="information" checked><label for="active1" style="border:solid;border-radius:15px" >Information</label>
+                    <div id="information" style=" overflow:scroll; width:100%; height:470px;">
+                        <div style=" width:100%;">
                             <p>There are threre main kind of schools in Australia.</p>
                         </div>
-                        <div class="address-agileinfo">
+                        <div class="address-agileinfo" style=" width:100%;">
 
                             <p><span class="glyphicon glyphicon-info-sign"></span><strong>Public School</strong></p>
                             <p><strong>Benefits:</strong></p>
@@ -235,7 +234,7 @@
                             <p>2.Quality of staff</p>
                         </div>
 
-                        <div class="address-agileinfo">
+                        <div class="address-agileinfo" style=" width:100%;">
 
                             <p><span class="glyphicon glyphicon-info-sign"></span><strong>Cathoic School</strong></p>
                             <p><strong>Benefits:</strong></p>
@@ -247,7 +246,7 @@
                             <p>2.Your child may need to be prepared for strict but fair rules; learning to sit still in Mass and adopting slightly formal manners at a young age</p>
                         </div>
 
-                        <div class="address-agileinfo">
+                        <div class="address-agileinfo" style=" width:100%;">
                             <p><span class="glyphicon glyphicon-info-sign"></span><strong>Private School</strong></p>
                             <p><strong>Benefits:</strong></p>
                             <p>1.Private schools can promote their wide range of creative, sporting, community and adventuring activities, marketed as extending your child’s abilities, resilience and competitive drive.</p>
@@ -260,7 +259,7 @@
 
                     </div>
                 </li>
-                <li role="presentation">
+                <li id="attribute_name">
                     <input class="aa" type="radio" name="check" id="active2" value="language"><label for="active2" role="tab" style="border:solid;border-radius:15px">Language</label>
                     <div id="languageFilter" style="padding:2.5em" class="address-agileinfo">
                         <div style="margin-top:0.5em">
@@ -290,7 +289,7 @@
 
                     </div>
                 </li>
-                <li role="presentation">
+                <li id="attribute_name">
                     <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3" style="border:solid;border-radius:15px" role="tab">Country</label>
                     <div id="countryFilter" style="padding:3em" class="address-agileinfo">
                         <div style="margin-top:0.5em">
