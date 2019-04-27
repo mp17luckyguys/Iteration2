@@ -131,8 +131,10 @@
                 }
             </table>
     -->
-            <p>Click the button to sort places alphabetically:</p>
-            <button onclick="sortList()">Sort</button>
+            <div style="font-family:Georgia;line-height:1.2em;padding-top:1em;">
+                <p><strong>Click the Button to Sort Places Alphabetically:</strong> &nbsp;&nbsp; <button onclick="sortList()"> Sort</button></p>
+            </div>
+            
             <div style="padding-left:20px" id="id01">
                 @foreach (var item in Model)
                 {
@@ -141,7 +143,7 @@
                             <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
                         </header>
                         <div class="w3-container">
-                            <p>@Html.DisplayFor(modelItem => item.Facility)</p>
+                            <p style="font-family:Georgia;line-height:1.2em;padding-top:1em;">@Html.DisplayFor(modelItem => item.Facility)</p>
                         </div>
                     </div>
                 }
