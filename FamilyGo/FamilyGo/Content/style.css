@@ -364,7 +364,7 @@ a.agilebtn {
 }
 
 .about {
-    background: url(../Image/2.jpg) ;
+    background:url(../Image/2.jpg);
     height:450px;
 }
 
@@ -762,7 +762,7 @@ h3.w3ltitle {
 
 .pince-left {
     float: left;
-    width: 17%;
+    width: 10%;
     border: 2px solid #66cdaa;
     text-align: center;
     padding: 0.5em 0.5em;
@@ -773,7 +773,7 @@ h3.w3ltitle {
 
 .pince-right {
     float: right;
-    width: 75%;
+    width: 85%;
 }
 
 .w3ls-pince h4 {
@@ -2041,10 +2041,7 @@ h2.typoh2 {
     .about-wthreegrids img {
         width:600px;
         height:425px;
-        margin:25%;
-        border:solid;
-        border-width:20px;
-        border-radius:25px;
+       
     }
     
 
@@ -2669,7 +2666,7 @@ h2.typoh2 {
     }
 
     .pince-left {
-        width: 19%;
+        width: 10%;
     }
 
     .pince-right {
