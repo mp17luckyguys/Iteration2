@@ -62,7 +62,8 @@ namespace FamilyGo.Controllers
                         ViewBag.Data2 = DATA2;
                         ViewBag.Data3 = DATA3;*/
             ViewBag.activityName = i;
-            return View(newPlacesList);
+            var newL = newPlacesList.OrderBy(x => x.Name).ToList();
+            return View(newL);
         }
 
         // GET: Places/Details/5
