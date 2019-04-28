@@ -479,7 +479,9 @@
                 ret.appendChild(newop);
             }
         }
+        document.getElementById("Select1").add(new Option("-select activity-", 0));
         document.getElementById("Select1").appendChild(ret);
+        document.getElementById("Select1").options[0].selected = true;
     }
 
     function search() {
