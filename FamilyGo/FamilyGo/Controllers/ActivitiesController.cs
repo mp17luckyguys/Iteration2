@@ -19,8 +19,15 @@ namespace FamilyGo.Controllers
         // GET: Activities
         public ActionResult Index()
         {
-            ViewBag.activities = db.Activities.ToList();
-            return View(db.Activities.ToList());
+            // ViewBag.activities = db.Activities.ToList();
+            //  return View(db.Activities.ToList());
+            var age = from a in db.Activities
+                      select a;
+            if (!String.IsNullOrEmpty("12"))
+            {
+                age = age.Where(a => a.Description.Contains("12"));
+            }
+            return View(age.ToList());
         }
 
         public ActionResult Information()

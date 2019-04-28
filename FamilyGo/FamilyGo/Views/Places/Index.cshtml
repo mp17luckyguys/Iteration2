@@ -32,14 +32,14 @@
         <h5>
             <a href="@Url.Action("Index","Home")">Home / &nbsp;</a>
             <a href="@Url.Action("Index","Activities")">Activities / </a>
-            <a href="@Url.Action("Index","Places",new { i = ViewBag.activityName})">Activity Places</a>
+            <a href="@Url.Action("Index","Places",new { i = ViewBag.activityName})"> @ViewBag.activityName </a>
         </h5>
     </div>
 
     <div>
         <div style="margin-top:5px;">
             <div class="about-heading">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <!--
                          <div>
                            <h6> Children Age Group:</h6>
