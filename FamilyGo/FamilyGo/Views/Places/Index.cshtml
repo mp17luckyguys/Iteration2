@@ -367,7 +367,7 @@
                 "longitude": parseFloat(longitude),
                 "description": description
             };
-            if (activityName == "Dancing" || activityName == "Animal" || activityName == "Adventure&Theme Park" || activityName == "Others" || activityName == "Garden") { locations.push(point); }
+            if (activityName == "Dancing" || activityName == "Animal" || activityName == "Adventure and Theme Park" || activityName == "Others" || activityName == "Garden") { locations.push(point); }
             else {
                 if (point.latitude < (clat + dis) && point.latitude > (clat - dis) && point.longitude < (clon + dis) && point.longitude > (clon - dis)) { locations.push(point); }
             }
@@ -461,9 +461,9 @@
         }
         var activities = '@ViewBag.activities';
         var tmpRet = {
-            "DATA1": { "Park": "Park", "Animal": "Animal", "Adventure Park and Theme Park": "Adventure Park and Theme Park","Others":"Others","Garden":"Garden","X":"X"},
-            "DATA2": { "Games": "Games", "Park": "Park", "Animal": "Animal", "Adventure Park and Theme Park": "Adventure Park and Theme Park", "Others": "Others", "Garden": "Garden", "X": "X"},
-            "DATA3": { "Australian Rules Football": "Australian Rules Football", "Badminton": "Badminton", "Baseball": "Baseball", "Basketball": "Basketball", "Cricket": "Cricket", "Cycling": "Cycling", "Dancing": "Dancing", "Netball": "Netball", "Skating": "Skating", "Soccer": "Soccer", "Swimming": "Swimming", "Table Tennis": "Table Tennis", "Tennis":"Tennis","Park": "Park", "Animal": "Animal", "Adventure Park and Theme Park": "Adventure Park and Theme Park", "Others": "Others", "Garden": "Garden", "X": "X"}
+            "DATA1": { "Park": "Park", "Animal": "Animal", "Adventure and Theme Park": "Adventure and Theme Park","Others":"Others","Garden":"Garden","X":"X"},
+            "DATA2": { "Games": "Games", "Park": "Park", "Animal": "Animal", "Adventure and Theme Park": "Adventure and Theme Park", "Others": "Others", "Garden": "Garden", "X": "X"},
+            "DATA3": { "Australian Rules Football": "Australian Rules Football", "Badminton": "Badminton", "Baseball": "Baseball", "Basketball": "Basketball", "Cricket": "Cricket", "Cycling": "Cycling", "Dancing": "Dancing", "Netball": "Netball", "Skating": "Skating", "Soccer": "Soccer", "Swimming": "Swimming", "Table Tennis": "Table Tennis", "Tennis": "Tennis", "Park": "Park", "Animal": "Animal", "Adventure and Theme Park": "Adventure and Theme Park", "Others": "Others", "Garden": "Garden", "X": "X"}
         };
         var ret = document.createDocumentFragment();
         var tmpObj;
@@ -489,7 +489,10 @@
         else if (document.getElementById("Select1").value == '') {
             alert("select an activities")
         }
-        else { location.href = '/Places/Index?i=' + document.getElementById("Select1").value; }
+        else {
+            console.log(document.getElementById("Select1").value);
+            location.href = '/Places/Index?i=' + document.getElementById("Select1").value;
+        }
     }
 </script>
 
