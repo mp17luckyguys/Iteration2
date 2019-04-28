@@ -359,7 +359,7 @@
             var description = $(".description", this).text().trim();
             var activityName = $(".ActivityName", this).text().trim();
             // Create a point data structure to hold the values.
-            console.log(name);
+            console.log(activityName);
             var point = {
                 "id": id,
                 "name": name,
@@ -367,7 +367,7 @@
                 "longitude": parseFloat(longitude),
                 "description": description
             };
-            if (activityName == "Dancing" || activityName == "Animal" || activityName == "Adventure Park and Theme Park" || activityName == "Others" || activityName == "Garden") { locations.push(point); }
+            if (activityName == "Dancing" || activityName == "Animal" || activityName == "Adventure&Theme Park" || activityName == "Others" || activityName == "Garden") { locations.push(point); }
             else {
                 if (point.latitude < (clat + dis) && point.latitude > (clat - dis) && point.longitude < (clon + dis) && point.longitude > (clon - dis)) { locations.push(point); }
             }
@@ -375,6 +375,7 @@
             // Push them all into an array.
             //alert(locations);
         });
+        
         var image = {
             url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
             // This marker is 20 pixels wide by 32 pixels high.
