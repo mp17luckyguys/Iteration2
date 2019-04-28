@@ -441,7 +441,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <None Include="json\new.geojson" />
+    <None Include="json\new1.geojson" />
     <None Include="Properties\PublishProfiles\FamilyGo - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FamilyGo - FTP1.pubxml" />
     <None Include="Properties\PublishProfiles\FamilyGo - Web Deploy.pubxml" />

@@ -371,7 +371,7 @@
             url: "/Education/GetJsonFromFile",
             type: "GET",//请求方式为get
             dataType: "json", //返回数据格式为json
-            data: { path: "~/json/new.geojson" },
+            data: { path: "~/json/new1.geojson" },
             async: false,//是否同步
             success: function (data) {//请求成功完成后要执行的方法
                 boundaries = data;
@@ -1036,33 +1036,8 @@
                     .attr("transform", "translate(0,20)");
 
                 var l = [{ "tp": "Kindergarten", "color": "purple", "sp": "rect" }]
-                var l2 = [{ "tp": "G", "color": "white", "sp": "rect" }, { "tp": "Government", "color": "yellow", "sp": "rect" }, { "tp": "Independent", "color": "blue", "sp": "rect" }, { "tp": "Catholic", "color": "red", "sp": "rect" }, { "tp": "LanguageSchool", "color": "green", "sp": "rect" }]
-                var legend = legendArea.selectAll("g")
-                    .data(l)
-                    .enter()
-                    .append("g")
-                    .attr("transform", function (d, i) {
-                        return "translate(" + 10 + "," + 10 * i + ")";
-                    });
+                var l2 = [{ "tp": "G", "color": "white", "sp": "rect" }, { "tp": "Government", "color": "purple", "sp": "rect" }, { "tp": "Independent", "color": "blue", "sp": "rect" }, { "tp": "Catholic", "color": "red", "sp": "rect" }, { "tp": "LanguageSchool", "color": "green", "sp": "rect" }]
 
-                legend.append("rect")
-                    .attr("width", 8)
-                    .attr("height", 8)
-                    .style("fill", function (d, i) {
-                        return d['color']
-                    });
-
-                legend.append("text")
-                    .attr("x", 24)
-                    .attr("y", 9)
-                    .style("fill", function (d, i) {
-                        return d['color']
-                    })
-                    .attr("dy", ".05em")
-                    .attr("font-size", "10px")
-                    .text(function (d, i) {
-                        return d['tp'];
-                    });
 
                 var legend2 = legendArea.selectAll("g")
                     .data(l2)
@@ -1318,12 +1293,11 @@
                     var el = document.createElement('div');
                     el.className = 'marker';
                     //el.style.backgroundImage = 'url(https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png)';
-                    var markerColor = "yellow";
-                    if (marker.properties.Education_Sector == "Government") { markerColor = "yellow"; }
+                    var markerColor = "purple";
+                    if (marker.properties.Education_Sector == "Government") { markerColor = "purple"; }
                     else if (marker.properties.Education_Sector == "Independent") { markerColor = "blue"; }
                     else if (marker.properties.Education_Sector == "Catholic") { markerColor = "red"; }
                     else if (marker.properties.Education_Sector == "LanguageSchool") { markerColor = "green"; }
-                    else { markerColor = "purple"; }
                     el.style.backgroundColor = markerColor;
                     el.style.width = marker.properties.iconSize[0] + 'px';
                     el.style.height = marker.properties.iconSize[1] + 'px';
