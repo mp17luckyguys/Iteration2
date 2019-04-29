@@ -19,16 +19,14 @@
         }
 
         #map {
-            position: absolute;
+            position: relative;
             height: 100%;
             width: 75%;
-            bottom: 0;
-            top: 15em;
             left: 25%;
         }
 
         #wholeContiner {
-            width: 700px;
+            width: 100%;
             height: 800px;
         }
 
@@ -45,7 +43,7 @@
             border-width: 2px;
             background-color: white;
             position: absolute;
-            left: 26.5%;
+            left: 28%;
             bottom: 0;
             top:625px;
         }
@@ -56,7 +54,7 @@
             border-color: darkgray;
             border-width: 2px;
             background-color: white;
-            left: 26%;
+            left: 27%;
             top: 190px;
         }
 
@@ -66,7 +64,7 @@
             border-color: darkgray;
             border-width: 2px;
             background-color: white;
-            left: 26%;
+            left: 28%;
             top: 190px;
         }
 
@@ -84,7 +82,7 @@
         #filter {
             position: absolute;
             background: #fff;
-            height: 520px;
+            height: 750px;
             width: 25%;
             bottom: 0;
             top: 11em;
@@ -216,7 +214,7 @@
             <ul id="filter_name">
                 <li id="attribute_name">
                     <input class="aa" type="radio" name="check" id="active1" value="information" checked><label for="active1" style="border:solid;border-radius:15px" >Information</label>
-                    <div id="information" style=" overflow:scroll; width:100%; height:470px;">
+                    <div id="information" style=" overflow:scroll; width:100%; height:750px;">
                         <div><span class="glyphicon glyphicon-share-alt" style="color:#66cdaa"></span><a href="https://www.studyinaustralia.gov.au/english/australian-education/education-system" style="font-family:Georgia;color:#66cdaa;margin:0.5em"><u>Australia Education System</u></a></div>
                         <div style=" width:100%;">
                             <p>There are three main kind of schools in Australia.</p>
@@ -527,7 +525,9 @@
                         map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: true });
                     }
                     tooltip.style("visibility", "visible").text(thisElement.features[0].properties.vic_loca_2);
-                    tooltip.style("top", (thisElement.point.y + 150) + "px").style("left", (thisElement.point.x + 310) + "px");
+                    var a = a || window.event;
+                    tooltip.style("top", (a.clientY + document.body.scrollTop + document.documentElement.scrollTop + 20) + "px").style("left", (a.clientX + document.body.scrollLeft + document.documentElement.scrollLeft) + "px");
+                    //tooltip.style("top", (thisElement.point.y/0.75) + "px").style("left", (thisElement.point.x) + "px");
                     clicked = thisElement.features[0].properties.vic_loca_2;
                     Ddata.forEach(function (e) {
                         if (e["Suburb"].toUpperCase() == clicked) {
@@ -691,8 +691,8 @@
                         map.setFeatureState({ source: 'states', id: hoveredStateId }, { hover: true });
                     }
                     tooltip.style("visibility", "visible").text(thisElement.features[0].properties.vic_loca_2);
-                    tooltip.style("top", (thisElement.point.y + 150) + "px").style("left", (thisElement.point.x + 310) + "px");
-
+                    var a = a || window.event;
+                    tooltip.style("top", (a.clientY + document.body.scrollTop + document.documentElement.scrollTop + 20) + "px").style("left", (a.clientX + document.body.scrollLeft + document.documentElement.scrollLeft) + "px");
                     clicked = thisElement.features[0].properties.vic_loca_2;
                     Ddata.forEach(function (e) {
                         if (e["Suburb"].toUpperCase() == clicked) {
