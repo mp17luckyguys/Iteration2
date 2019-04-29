@@ -307,10 +307,8 @@
                             Select School Type:<br />
                             <select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
                         </div>
-                        <!-- <div style="margin-top:0.5em">
-                            Select Age Group:<br />
-                            <select id="selectAgeC" onchange="suburbChange(this)"></select><br />
-                        </div>-->
+
+
                         <div style="margin-top:0.5em">
                             <form>
                                 <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
@@ -1074,24 +1072,12 @@
                         return d['tp'];
                     });
 
-
-
-
-
-
-
-
-
-
                 var schoolTypeSelected = "";
-                //var ageSelected = "";
                 if (countryFunction) {
                     schoolTypeSelected = selectSchoolTypeC.options[selectSchoolTypeC.selectedIndex].value;
-                    //ageSelected = selectAgeC.options[selectAgeC.selectedIndex].value;
                 }
                 if (languageFunction) {
                     schoolTypeSelected = selectSchoolTypeL.options[selectSchoolTypeL.selectedIndex].value;
-                    //ageSelected = selectAgeL.options[selectAgeL.selectedIndex].value;
                 }
                 document.getElementById("svg1").style.display = "none";
                 var a = document.getElementById("svg");
@@ -1173,7 +1159,6 @@
                     }
                 }
                 else if (schoolTypeSelected != "none"
-                    //&& ageSelected == "none"
                 ) {
                     for (i = 0; i < schools.length; i++) {
                         if (schools[i].Education_Sector.trim() == schoolTypeSelected
@@ -1201,99 +1186,7 @@
                         }
                     }
                 }
-                    /*
-                else if (schoolTypeSelected == "none" && ageSelected != "none") {
-                    for (i = 0; i < schools.length; i++) {
-                        if (schools[i].School_Type.trim() == "Kindergarten" && ageSelected == "3-6 Years") {
-                            var feature = {
-                                "type": "Feature",
-                                "properties": {
-                                    "message": schools[i].School_Name.trim(),
-                                    "iconSize": [15, 15],
-                                    "Education_Sector": schools[i].Education_Sector.trim(),
-                                    "School_Type": schools[i].School_Type.trim()
-                                },
-                                "geometry": {
-                                    "type": "Point",
-                                    "coordinates": [
-                                        parseFloat(schools[i].Y.trim()),
-                                        parseFloat(schools[i].X.trim())
-                                    ]
-                                }
-                            };
-                            geojson["features"].push(feature);
-                        }
-                        if (schools[i].School_Type.trim() != "Kindergarten" && ageSelected == "7-12 Years") {
-                            var feature = {
-                                "type": "Feature",
-                                "properties": {
-                                    "message": schools[i].School_Name.trim(),
-                                    "iconSize": [15, 15],
-                                    "Education_Sector": schools[i].Education_Sector.trim(),
-                                    "School_Type": schools[i].School_Type.trim()
-                                },
-                                "geometry": {
-                                    "type": "Point",
-                                    "coordinates": [
-                                        parseFloat(schools[i].Y.trim()),
-                                        parseFloat(schools[i].X.trim())
-                                    ]
-                                }
-                            };
-                            geojson["features"].push(feature);
-                        }
-                    }
-                }
-                else {
-                    if (ageSelected == "7-12 Years") {
-                        for (i = 0; i < schools.length; i++) {
-                            if (schools[i].Education_Sector.trim() == schoolTypeSelected && schools[i].School_Type.trim() != "Kindergarten") {
-                                var feature = {
-                                    "type": "Feature",
-                                    "properties": {
-                                        "message": schools[i].School_Name.trim(),
-                                        "iconSize": [15, 15],
-                                        "Education_Sector": schools[i].Education_Sector.trim(),
-                                        "School_Type": schools[i].School_Type.trim()
-                                    },
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": [
-                                            parseFloat(schools[i].Y.trim()),
-                                            parseFloat(schools[i].X.trim())
-                                        ]
-                                    }
-                                };
-                                geojson["features"].push(feature);
-                            }
-                        }
-                    }
-                    if (ageSelected == "3-6 Years") {
-                        for (i = 0; i < schools.length; i++) {
-                            if (schools[i].Education_Sector.trim() == "unknown" && schools[i].School_Type.trim() == "Kindergarten") {
-                                var feature = {
-                                    "type": "Feature",
-                                    "properties": {
-                                        "message": schools[i].School_Name.trim(),
-                                        "iconSize": [15, 15],
-                                        "Education_Sector": schools[i].Education_Sector.trim(),
-                                        "School_Type": schools[i].School_Type.trim()
-                                    },
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": [
-                                            parseFloat(schools[i].Y.trim()),
-                                            parseFloat(schools[i].X.trim())
-                                        ]
-                                    }
-                                };
-                                geojson["features"].push(feature);
-                            }
-                        }
-                    }
-
-                }
-                */
+                if (geojson["features"].length == 0) { alert("Sorry, no result was fund!"); }
                 // add markers to map
                 geojson.features.forEach(function (marker) {
                     // create a DOM element for the marker
