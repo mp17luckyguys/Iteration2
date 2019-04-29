@@ -291,7 +291,7 @@ div#bs-example-navbar-collapse-1 {
 
 a.agilebtn {
     font-size: 1em;
-    color: #66cdaa;
+    color: #fff;
     padding: 0.5em 0.5em;
     display: inline-block;
     outline:solid;
@@ -347,6 +347,7 @@ a.agilebtn {
     -o-transform: scale(0.5,0.5);
     -ms-transform: scale(0.5,0.5);
     transform: scale(0.5,0.5);
+    
 }
 
 .agilebtn:hover::after {
@@ -356,6 +357,7 @@ a.agilebtn {
     -o-transform: scale(1,1);
     -ms-transform: scale(1,1);
     transform: scale(1,1);
+    color:#fff;
 }
 /*-- //banner --*/
 /*-- about --*/
@@ -365,7 +367,7 @@ a.agilebtn {
 
 .about {
     background:url(../Image/2.jpg);
-    height:450px;
+    
 }
 
     .about h4 {
@@ -442,12 +444,13 @@ h3.agileits-title {
 }
 
 h3.agileits-title1 {
-    font-size: 2em;
+    font-size: 2.5em;
     font-family:Georgia;
     text-align: center;
-    line-height: 1em;
+    line-height: 1.2em;
     color: black;
     margin-bottom: 1em;
+    margin-top:1em;
 }
 
 .news-w3left.news-w3left1 {
@@ -733,9 +736,11 @@ h3.agileits-title1 {
 /*-- mission --*/
 h3.w3ltitle {
     font-size: 2em;
-    color: #ffd700;
+    font-family:Georgia;
+    color: black;
     text-transform: uppercase;
     text-align:center;
+    margin:0.5em
 }
 
 .about p {
@@ -2792,7 +2797,7 @@ h2.typoh2 {
     }
 
     h3.agileits-title1 {
-        font-size: 2.2em;
+        font-size: 2.5em;
     }
 
     .services h5 {
