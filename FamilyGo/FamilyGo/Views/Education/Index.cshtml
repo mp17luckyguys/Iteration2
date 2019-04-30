@@ -213,8 +213,8 @@
         <div class="about-heading container">
             <ul id="educationTab" class="nav nav-tabs" role="tabpanel">
                 <li role="presentation" class="active"><a href="#" role="tab">School Information</a></li>
-                <li role="presentation"><a href="#" role="tab">Language</a> </li>
-                <li role="presentation"><a href="#" role="tab">Nationality</a></li>
+                <li role="presentation"><a href="javascript:initlanguage();" role="tab">Language</a> </li>
+                <li role="presentation"><a href="javascript:initcountry();" role="tab">Nationality</a></li>
             </ul>
         </div>
 
@@ -348,6 +348,24 @@
             var countryFunction = false;
             var languageFunction = false;
             var suburbSelected = "";
+            function initcountry() {
+                countryFunction = true;
+                languageFunction = false;
+                if (document.getElementById("selectCountry").options[0]) { document.getElementById("selectCountry").options[0].selected = true; }
+                //
+                loadSuburb();
+                document.getElementById("selectSuburbC").options[0].selected = true;
+
+                country();
+            }
+            function initlanguage() {
+                languageFunction = true;
+                countryFunction = false;
+                if (document.getElementById("selectLanguage").options[0]) { document.getElementById("selectLanguage").options[0].selected = true; }
+                loadSuburb();
+                document.getElementById("selectSuburbL").options[0].selected = true;
+                language(); }
+            function initinformation() { }
             $(function () {
                 $(":radio").click(function () {
                     if ($(this).val() == "information") { }
