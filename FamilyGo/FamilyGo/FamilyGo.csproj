@@ -217,6 +217,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cm-overlay.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -388,6 +389,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\close.png" />
     <Content Include="Image\1.jpg" />
     <Content Include="Image\11.jpg" />
     <Content Include="Image\2.jpg" />
@@ -398,14 +400,17 @@
     <Content Include="Image\66cdaa.png" />
     <Content Include="Image\blue.jpg" />
     <Content Include="Image\childneglect.jpg" />
+    <Content Include="Image\close.png" />
     <Content Include="Image\Green flower.png" />
     <Content Include="Image\halftone-yellow.png" />
     <Content Include="Image\Kaws-Sesame-Street-Uniqlo-Cookie-Monster-Plush-Toy-Blue.jpg" />
     <Content Include="Image\light-green.jpg" />
     <Content Include="Image\new1.jpg" />
     <Content Include="Image\new2.jpg" />
+    <Content Include="Image\next.png" />
     <Content Include="Image\noPhoto.png" />
     <Content Include="Image\pineapple.jpg" />
+    <Content Include="Image\prev.png" />
     <Content Include="Image\white.jpg" />
     <Content Include="Image\yellow duck.png" />
     <Content Include="Models\FamilyGoiteration2.Context.tt">
