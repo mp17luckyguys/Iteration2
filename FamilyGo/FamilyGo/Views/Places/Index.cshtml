@@ -185,7 +185,7 @@
                         {
                             <tr>
                                 <td>
-                                    <div class="w3-card-4 col-sm-11 w3-hover-shadow" style="height:150px; margin:1em;">
+                                    <div class="w3-card-4 col-sm-11 w3-hover-shadow" style="height:100%; margin:1em;padding-bottom:2em">
                                         <header class="w3-container w3-blue">
                                             <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
                                         </header>
@@ -399,8 +399,8 @@
         for (var i = 0; i < locations.length; i++) {
            // var contentString = '<div id="content">' + '<h4 style="color:black">' + locations[i].name + '</h4></br>' + locations[i].description +
            //     '</br></br><a href = "Places/Details/?id=' + locations[i].id + '" style="color:blue"><u>More Details</u></a></div>';
-            var contentString = '<div id="content">' + '<h4 style="color:black">' + locations[i].name + '</h4></br>' + locations[i].description +
-                '</br></br><a href = "Places/Details/?id=' + locations[i].id + '" style="color:blue"><u>More Details</u></a></div>';
+            var contentString = '<div id="content">' + '<h5 style="color:black;font-family:Georgia">' + locations[i].name + '</h4></br>'  +
+                '<a href = "Details/?id=' + locations[i].id + '" style="color:blue"><u>More Details</u></a></div>';
             const marker = new google.maps.Marker({
                 position: { lat: locations[i].latitude, lng: locations[i].longitude },
                 map: map

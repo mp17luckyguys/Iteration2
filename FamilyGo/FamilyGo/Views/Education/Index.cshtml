@@ -209,14 +209,16 @@
                 <a href="@Url.Action("Index","Education")">Education</a>
             </h5>
         </div>
-
+        <!--
         <div class="about-heading container">
-            <ul id="educationTab" class="nav nav-tabs" role="tabpanel">
-                <li role="presentation" class="active"><a href="#" role="tab">School Information</a></li>
-                <li role="presentation"><a href="javascript:initlanguage();" role="tab">Language</a> </li>
-                <li role="presentation"><a href="javascript:initcountry();" role="tab">Nationality</a></li>
-            </ul>
-        </div>
+        <ul id="educationTab" class="nav nav-tabs" role="tabpanel">
+            <li role="presentation" class="active"><a href="#" role="tab">School Information</a></li>
+            <li role="presentation"><a href="javascript:initlanguage();" role="tab">Language</a> </li>
+            <li role="presentation"><a href="javascript:initcountry();" role="tab">Nationality</a></li>
+        </ul>
+    </div>
+    -->
+
 
         <div id="wholeContiner" style="margin:2em">
             <div class="col-lg-2 box" id="filter">
@@ -282,9 +284,9 @@
                             </div>
                             <!-- <div style="margin-top:0.5em">
 
-                              Select Age Group:<br />
-                              <select id="selectAgeL" onchange="suburbChange(this)"></select><br />
-                          </div>-->
+                            Select Age Group:<br />
+                            <select id="selectAgeL" onchange="suburbChange(this)"></select><br />
+                        </div>-->
                             <div style="margin-top:0.5em">
                                 <form>
                                     <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
@@ -364,7 +366,8 @@
                 if (document.getElementById("selectLanguage").options[0]) { document.getElementById("selectLanguage").options[0].selected = true; }
                 loadSuburb();
                 document.getElementById("selectSuburbL").options[0].selected = true;
-                language(); }
+                language();
+            }
             function initinformation() { }
             $(function () {
                 $(":radio").click(function () {
