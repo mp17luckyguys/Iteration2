@@ -19,22 +19,7 @@ namespace FamilyGo.Controllers
     {
         private FamilyGoiteration2_dbEntities1 db = new FamilyGoiteration2_dbEntities1();
 
-        // GET: Places
-        /*       public ActionResult Index()
-               {
-                   var places = db.Places.Include(p => p.Activity);
-                               List<Place> placesList = places.ToList();
-                               List<Place> newPlacesList = new List<Place>();
-                               foreach (Place place in placesList)
-                               {
-                                   if (place.ActivityActivityId == i)
-                                       newPlacesList.Add(place);
-                               }
-
-                               return View(newPlacesList);
-                   return View(places.ToList());
-               }*/
-
+   
         public ActionResult Index(string i)
         {
             var places = db.Places.Include(p => p.Activity);
