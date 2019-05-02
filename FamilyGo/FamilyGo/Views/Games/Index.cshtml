@@ -8,7 +8,7 @@
 <style type="text/css">
 
     #pagination a {
-        background: #66cdaa;
+        background: #009688;
         text-align: center;
         font-family: Georgia;
         color: white;
@@ -23,7 +23,7 @@
 
 <div class="container about-heading">
     <h5>
-        <a href="@Url.Action("Index","Home")">Home / </a>
+        <a href="@Url.Action("Index","Home")">Home /</a>
         <a href="@Url.Action("Index","Activities")">Activities /</a>
         <a href="@Url.Action("Index","Games")">Games</a>
     </h5>
@@ -102,7 +102,7 @@
                         <td>
                             <div class="w3-card-4 col-sm-12" style="height:100%; margin:1em;padding-bottom:2em">
 
-                                    <header class="w3-container w3-blue">
+                                    <header class="w3-container w3-teal">
                                         <h3 style="font-family:Georgia">@Html.DisplayFor(modelItem => item.Name)</h3>
                                     </header>
 
@@ -121,7 +121,7 @@
             <a id="prePage" onclick="prevPage()">Previous Page</a>
             <a id="nexPage" onclick="pnextPage()">Next Page</a>
             <a id="lasPage" onclick="lastPage()" style="width: 100px;">End</a>
-            <label id="numPage" style="width: 100px;margin-left: 10px;height: 20px;font-family:Georgia;background:#66cdaa;color:white;border-radius:20px;text-align:center" />
+            <label id="numPage" style="width: 100px;margin-left: 10px;height: 20px;font-family:Georgia;background:#009688;color:white;border-radius:20px;text-align:center" />
         </div>
     </div>
 
