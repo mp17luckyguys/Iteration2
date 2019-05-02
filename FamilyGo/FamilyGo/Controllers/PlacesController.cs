@@ -30,22 +30,7 @@ namespace FamilyGo.Controllers
                 if (string.Equals(place.Activity.Name,i))
                     newPlacesList.Add(place);
             }
-            /*            List < Activity > acti= db.Activities.ToList();
-                        Dictionary<string, string> DATA1 = new Dictionary<string, string>();
-                        Dictionary<string, string> DATA2 = new Dictionary<string, string>();
-                        Dictionary<string, string> DATA3 = new Dictionary<string, string>();
-                        foreach (Activity a in acti)
-                        {
-                            DATA1.Add(a.Name, a.Name);
-                            if (a.Description == "12" || a.Description == "1") { DATA2.Add(a.Name, a.Name); }
-                            if (a.Description == "12" || a.Description == "2") { DATA3.Add(a.Name, a.Name); }
-                        }
-                        DATA1.Add("X", "X");
-                        DATA2.Add("X", "X");
-                        DATA3.Add("X", "X");
-                        ViewBag.Data1 = DATA1;
-                        ViewBag.Data2 = DATA2;
-                        ViewBag.Data3 = DATA3;*/
+   
             ViewBag.activityName = i;
             var newL = newPlacesList.OrderBy(x => x.Name).ToList();
             return View(newL);

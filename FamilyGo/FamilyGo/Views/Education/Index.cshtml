@@ -259,6 +259,7 @@
                     </li>
                     <li id="attribute_name">
                         <input class="aa" type="radio" name="check" id="active2" value="language"><label for="active2" style="border:solid;border-radius:15px">Language</label>
+                        <!--this is filter for language-->
                         <div id="languageFilter" style="padding:2.5em" class="address-agileinfo">
                             <div style="margin-top:0.5em">
                                 Select a Language:<br />
@@ -272,26 +273,19 @@
                                 Select School Type:<br />
                                 <select id="selectSchoolTypeL" onchange="suburbChange(this)"></select><br />
                             </div>
-                            <!-- <div style="margin-top:0.5em">
-
-                            Select Age Group:<br />
-                            <select id="selectAgeL" onchange="suburbChange(this)"></select><br />
-                        </div>-->
                             <div style="margin-top:0.5em">
                                 <form>
-                                    <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
                                     <input class="clickMe" type="button" value="Clear" onclick="clear();" />
                                 </form>
                             </div>
                             <div style="margin-top:0.5em">
                                 <p><span class="glyphicon glyphicon-info-sign"></span>The filter has no order limit for selection</p>
                             </div>
-
-
                         </div>
                     </li>
                     <li id="attribute_name">
                         <input class="aa" type="radio" name="check" id="active3" value="country"><label for="active3" style="border:solid;border-radius:15px">Country</label>
+                        <!--this is filter for country-->
                         <div id="countryFilter" style="padding:3em" class="address-agileinfo">
                             <div style="margin-top:0.5em">
                                 Select a Country<br />
@@ -307,19 +301,14 @@
                                 <select id="selectSchoolTypeC" onchange="suburbChange(this)"></select><br />
                             </div>
 
-
                             <div style="margin-top:0.5em">
                                 <form>
-                                    <!--<button id="clearButton2" onclick="clear();">Clear</button>-->
                                     <input class="clickMe" type="button" value="Clear" onclick="clear();" />
                                 </form>
                             </div>
-
                             <div style="margin-top:0.5em">
                                 <p><span class="glyphicon glyphicon-info-sign"></span>The filter has no order limit for selection</p>
                             </div>
-
-                            <!--<div style="height:100px"><input id="clickMe" type="button" value="clickme" onclick="clear();" /></div>-->
                         </div>
                     </li>
                 </ul>
@@ -330,7 +319,6 @@
             //sort the options in the select element based on alphabet
             function sortSelectOptions(selectElement) {
                 var options = $(selectElement + " option");
-
                 options.sort(function (a, b) {
                     if (a.text.toUpperCase() > b.text.toUpperCase()) return 1;
                     else if (a.text.toUpperCase() < b.text.toUpperCase()) return -1;
@@ -352,6 +340,7 @@
 
                 country();
             }
+            //this is the entry of language function
             function initlanguage() {
                 languageFunction = true;
                 countryFunction = false;
@@ -360,7 +349,9 @@
                 document.getElementById("selectSuburbL").options[0].selected = true;
                 language();
             }
+            //this is the entry of information funtion
             function initinformation() { }
+            //this is the original entry, going to be removed
             $(function () {
                 $(":radio").click(function () {
                     if ($(this).val() == "information") { }

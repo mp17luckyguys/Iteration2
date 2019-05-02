@@ -397,8 +397,6 @@
 
     function addMarkerInfo() {
         for (var i = 0; i < locations.length; i++) {
-           // var contentString = '<div id="content">' + '<h4 style="color:black">' + locations[i].name + '</h4></br>' + locations[i].description +
-           //     '</br></br><a href = "Places/Details/?id=' + locations[i].id + '" style="color:blue"><u>More Details</u></a></div>';
             var contentString = '<div id="content">' + '<h5 style="color:black;font-family:Georgia">' + locations[i].name + '</h4></br>'  +
                 '<a href = "Places/Details/?id=' + locations[i].id + '" style="color:blue"><u>More Details</u></a></div>';
             const marker = new google.maps.Marker({
@@ -491,7 +489,7 @@
         }
         else {
             console.log(document.getElementById("Select1").value);
-            location.href = '/Places/Index?i=' + document.getElementById("Select1").value;
+            location.href = '/Places?i=' + document.getElementById("Select1").value;
         }
     }
 </script>
